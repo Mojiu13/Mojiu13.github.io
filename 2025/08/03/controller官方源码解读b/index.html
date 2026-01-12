@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Mojiu">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2025/08/03/controller官方源码解读b/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="controller官方源码解读b">
+<meta property="og:url" content="http://example.com/2025/08/03/controller%E5%AE%98%E6%96%B9%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BBb/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2025-08-03T14:17:58.000Z">
+<meta property="article:modified_time" content="2026-01-09T09:01:40.837Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="ros">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            controller官方源码解读b | MojiuBot
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Theme Redefine","subtitle":{"text":[],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                MojiuBot
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">5</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">15</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">controller官方源码解读b</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/redefine-avatar.svg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">Mojiu</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-08-03 22:17:58</span>
+        <span class="mobile">2025-08-03 22:17:58</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2026-01-09 17:01:40</span>
+            <span class="mobile">2026-01-09 17:01:40</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/ros/">ros</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h1 id="详细代码"><a href="#详细代码" class="headerlink" title="详细代码"></a>详细代码</h1><div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  <span class="comment">// Check if a new trajectory message has been received from Non-RT threads</span></span><br><span class="line">  <span class="type">const</span> <span class="keyword">auto</span> current_trajectory_msg = current_trajectory_-&gt;<span class="built_in">get_trajectory_msg</span>();</span><br><span class="line">  <span class="keyword">auto</span> new_external_msg = new_trajectory_msg_.<span class="built_in">readFromRT</span>();</span><br><span class="line">  <span class="comment">// Discard, if a goal is pending but still not active (somewhere stuck in goal_handle_timer_</span></span><br><span class="line">)                                                                                              </span><br><span class="line"> <span class="keyword">if</span> (</span><br><span class="line">    current_trajectory_msg != *new_external_msg &amp;&amp; (rt_has_pending_goal_ &amp;&amp; !active_goal) == f</span><br><span class="line">alse)                                                                                           &#123;</span><br><span class="line">    <span class="built_in">fill_partial_goal</span>(*new_external_msg);</span><br><span class="line">    <span class="built_in">sort_to_local_joint_order</span>(*new_external_msg);</span><br><span class="line">    <span class="comment">// TODO(denis): Add here integration of position and velocity</span></span><br><span class="line">    current_trajectory_-&gt;<span class="built_in">update</span>(*new_external_msg);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// current state update</span></span><br><span class="line">  state_current_.time_from_start.sec = <span class="number">0</span>;</span><br><span class="line">  state_current_.time_from_start.nanosec = <span class="number">0</span>;</span><br><span class="line">  <span class="built_in">read_state_from_state_interfaces</span>(state_current_);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// currently carrying out a trajectory</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">has_active_trajectory</span>())</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="type">bool</span> first_sample = <span class="literal">false</span>;</span><br><span class="line">    TrajectoryPointConstIter start_segment_itr, end_segment_itr;</span><br><span class="line">    <span class="comment">// if sampling the first time, set the point before you sample</span></span><br><span class="line">    <span class="keyword">if</span> (!current_trajectory_-&gt;<span class="built_in">is_sampled_already</span>())</span><br><span class="line">    &#123;</span><br><span class="line">      first_sample = <span class="literal">true</span>;</span><br><span class="line">      <span class="keyword">if</span> (params_.interpolate_from_desired_state)</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span> (std::<span class="built_in">abs</span>(last_commanded_time_.<span class="built_in">seconds</span>()) &lt; std::numeric_limits&lt;<span class="type">float</span>&gt;::<span class="built_in">epsilon</span>())</span><br><span class="line">        &#123;</span><br><span class="line">          last_commanded_time_ = time;</span><br><span class="line">        &#125;</span><br><span class="line">        current_trajectory_-&gt;<span class="built_in">set_point_before_trajectory_msg</span>(</span><br><span class="line">          last_commanded_time_, last_commanded_state_, joints_angle_wraparound_);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">      &#123;</span><br><span class="line">        current_trajectory_-&gt;<span class="built_in">set_point_before_trajectory_msg</span>(</span><br><span class="line">          time, state_current_, joints_angle_wraparound_);</span><br><span class="line">      &#125;</span><br><span class="line">      traj_time_ = time;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      traj_time_ += period * scaling_factor_.<span class="built_in">load</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Sample expected state from the trajectory</span></span><br><span class="line">    current_trajectory_-&gt;<span class="built_in">sample</span>(</span><br><span class="line">      traj_time_, interpolation_method_, state_desired_, start_segment_itr, end_segment_itr);</span><br><span class="line">    state_desired_.time_from_start = traj_time_ - current_trajectory_-&gt;<span class="built_in">time_from_start</span>();</span><br><span class="line"></span><br><span class="line">    <span class="type">const</span> <span class="keyword">auto</span> next_point_index = std::<span class="built_in">distance</span>(current_trajectory_-&gt;<span class="built_in">begin</span>(), end_segment_itr)</span><br><span class="line">;                                                                                             </span><br><span class="line">    <span class="comment">// Sample setpoint for next control cycle</span></span><br><span class="line">    <span class="type">const</span> <span class="type">bool</span> valid_point = current_trajectory_-&gt;<span class="built_in">sample</span>(</span><br><span class="line">      traj_time_ + update_period_, interpolation_method_, command_next_, start_segment_itr,</span><br><span class="line">      end_segment_itr, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">    state_current_.time_from_start = time - current_trajectory_-&gt;<span class="built_in">time_from_start</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (valid_point)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="type">const</span> rclcpp::Time traj_start = current_trajectory_-&gt;<span class="built_in">time_from_start</span>();</span><br><span class="line">      <span class="comment">// this is the time instance</span></span><br><span class="line">      <span class="comment">// - started with the first segment: when the first point will be reached (in the future</span></span><br><span class="line">)                                                                                                   <span class="comment">// - later: when the point of the current segment was reached</span></span><br><span class="line">      <span class="type">const</span> rclcpp::Time segment_time_from_start = traj_start + start_segment_itr-&gt;time_from_s</span><br><span class="line">tart;                                                                                               <span class="comment">// time_difference is</span></span><br><span class="line">      <span class="comment">// - negative until first point is reached</span></span><br><span class="line">      <span class="comment">// - counting from zero to time_from_start of next point</span></span><br><span class="line">      <span class="type">double</span> time_difference = traj_time_.<span class="built_in">seconds</span>() - segment_time_from_start.<span class="built_in">seconds</span>();</span><br><span class="line">      <span class="type">bool</span> tolerance_violated_while_moving = <span class="literal">false</span>;</span><br><span class="line">      <span class="type">bool</span> outside_goal_tolerance = <span class="literal">false</span>;</span><br><span class="line">      <span class="type">bool</span> within_goal_time = <span class="literal">true</span>;</span><br><span class="line">      <span class="type">const</span> <span class="type">bool</span> before_last_point = end_segment_itr != current_trajectory_-&gt;<span class="built_in">end</span>();</span><br><span class="line">      <span class="keyword">auto</span> active_tol = active_tolerances_.<span class="built_in">readFromRT</span>();</span><br><span class="line"></span><br><span class="line">      <span class="comment">// have we reached the end, are not holding position, and is a timeout configured?</span></span><br><span class="line">      <span class="comment">// Check independently of other tolerances</span></span><br><span class="line">      <span class="keyword">if</span> (</span><br><span class="line">        !before_last_point &amp;&amp; !rt_is_holding_ &amp;&amp; cmd_timeout_ &gt; <span class="number">0.0</span> &amp;&amp;</span><br><span class="line">        time_difference &gt; cmd_timeout_)</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">RCLCPP_WARN</span>(logger, <span class="string">&quot;Aborted due to command timeout&quot;</span>);</span><br><span class="line"></span><br><span class="line">        new_trajectory_msg_.<span class="built_in">reset</span>();</span><br><span class="line">        new_trajectory_msg_.<span class="built_in">initRT</span>(<span class="built_in">set_hold_position</span>());</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Check state/goal tolerance</span></span><br><span class="line">      <span class="keyword">for</span> (<span class="type">size_t</span> index = <span class="number">0</span>; index &lt; dof_; ++index)</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">compute_error_for_joint</span>(state_error_, index, state_current_, state_desired_);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Always check the state tolerance on the first sample in case the first sample</span></span><br><span class="line">        <span class="comment">// is the last point</span></span><br><span class="line">        <span class="comment">// print output per default, goal will be aborted afterwards</span></span><br><span class="line">        <span class="keyword">if</span> (</span><br><span class="line">          (before_last_point || first_sample) &amp;&amp; !rt_is_holding_ &amp;&amp;</span><br><span class="line">          !<span class="built_in">check_state_tolerance_per_joint</span>(</span><br><span class="line">            state_error_, index, active_tol-&gt;state_tolerance[index], <span class="literal">true</span> <span class="comment">/* show_errors */</span>))</span><br><span class="line">        &#123;</span><br><span class="line">          tolerance_violated_while_moving = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// past the final point, check that we end up inside goal tolerance</span></span><br><span class="line">        <span class="keyword">if</span> (</span><br><span class="line">          !before_last_point &amp;&amp; !rt_is_holding_ &amp;&amp;</span><br><span class="line">          !<span class="built_in">check_state_tolerance_per_joint</span>(</span><br><span class="line">            state_error_, index, active_tol-&gt;goal_state_tolerance[index], <span class="literal">false</span> <span class="comment">/* show_errors</span></span><br><span class="line"><span class="comment"> */</span>))                                                                                                 &#123;</span><br><span class="line">          outside_goal_tolerance = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">          <span class="keyword">if</span> (active_tol-&gt;goal_time_tolerance != <span class="number">0.0</span>)</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="comment">// if we exceed goal_time_tolerance set it to aborted</span></span><br><span class="line">            <span class="keyword">if</span> (time_difference &gt; active_tol-&gt;goal_time_tolerance)</span><br><span class="line">            &#123;</span><br><span class="line">              within_goal_time = <span class="literal">false</span>;</span><br><span class="line">              <span class="comment">// print once, goal will be aborted afterwards</span></span><br><span class="line">              <span class="built_in">check_state_tolerance_per_joint</span>(</span><br><span class="line">                state_error_, index, default_tolerances_.goal_state_tolerance[index],</span><br><span class="line">                <span class="literal">true</span> <span class="comment">/* show_errors */</span>);</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// set values for next hardware write() if tolerance is met</span></span><br><span class="line">      <span class="keyword">if</span> (!tolerance_violated_while_moving &amp;&amp; within_goal_time)</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span> (use_closed_loop_pid_adapter_)</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="comment">// Update PIDs</span></span><br><span class="line">          <span class="keyword">for</span> (<span class="keyword">auto</span> i = <span class="number">0ul</span>; i &lt; num_cmd_joints_; ++i)</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="comment">// If effort interface only, add desired effort as feed forward</span></span><br><span class="line">            <span class="comment">// If velocity interface, ignore desired effort</span></span><br><span class="line">            <span class="type">size_t</span> index_cmd_joint = map_cmd_to_joints_[i];</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<hr>
+<p>下面我<strong>严格只讲 <code>joint_trajectory_controller::update()</code> 的 B 段</strong>，<br>不回退基础、不碰 A 段、不提前 C &#x2F; D 段、不讲 MoveIt 内部。</p>
+<blockquote>
+<p><strong>一句话总览（先给结论）</strong><br><strong>B 段解决的问题只有一个：</strong><br>👉 <em>“在当前控制周期 <code>update()</code> 被调用的这一刻，我应该执行轨迹上的哪个‘状态’？”</em></p>
+</blockquote>
+<hr>
+<h1 id="Block-6｜update-的-B-段在做什么（工程视角）"><a href="#Block-6｜update-的-B-段在做什么（工程视角）" class="headerlink" title="Block 6｜update() 的 B 段在做什么（工程视角）"></a>Block 6｜update() 的 B 段在做什么（工程视角）</h1><h2 id="一、B-段的输入-输出（先对齐心智模型）"><a href="#一、B-段的输入-输出（先对齐心智模型）" class="headerlink" title="一、B 段的输入 &#x2F; 输出（先对齐心智模型）"></a>一、B 段的输入 &#x2F; 输出（先对齐心智模型）</h2><h3 id="B-段已知输入"><a href="#B-段已知输入" class="headerlink" title="B 段已知输入"></a>B 段已知输入</h3><ul>
+<li><p><code>time</code>：当前 ROS 时间（rclcpp::Time）</p>
+</li>
+<li><p><code>period</code>：本次 update 周期时长（Duration）</p>
+</li>
+<li><p><code>active_trajectory_</code>：当前正在执行的轨迹（已在 A 段确定）</p>
+</li>
+<li><p><code>state_current_</code>：从硬件读到的当前关节状态（A 段末尾已读）</p>
+</li>
+</ul>
+<h3 id="B-段要算出的核心东西"><a href="#B-段要算出的核心东西" class="headerlink" title="B 段要算出的核心东西"></a>B 段要算出的核心东西</h3><ul>
+<li><p><code>traj_time</code>：<strong>当前轨迹执行时间（time_from_start 语义）</strong></p>
+</li>
+<li><p><code>state_desired_</code>：<strong>在这个 traj_time 下，轨迹“期望”的关节状态</strong></p>
+</li>
+</ul>
+<p>👉 <strong>B 段的输出不是“下一点”</strong><br>👉 而是：<strong>“当前时间点在轨迹上的理论状态”</strong></p>
+<hr>
+<h2 id="二、当前时间是如何计算的？"><a href="#二、当前时间是如何计算的？" class="headerlink" title="二、当前时间是如何计算的？"></a>二、当前时间是如何计算的？</h2><h3 id="1️⃣-核心变量：trajectory-起始时间"><a href="#1️⃣-核心变量：trajectory-起始时间" class="headerlink" title="1️⃣ 核心变量：trajectory 起始时间"></a>1️⃣ 核心变量：trajectory 起始时间</h3><p>在 controller 内部，每条轨迹都有一个<strong>起始基准时间</strong>：</p>
+<div class="code-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">trajectory_start_time_</span><br></pre></td></tr></table></figure></div>
+
+<p>它是在 <strong>轨迹被激活那一刻</strong> 固定下来的：</p>
+<div class="code-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">trajectory_start_time_ = time;</span><br></pre></td></tr></table></figure></div>
+
+<p>⚠️ 注意：</p>
+<ul>
+<li><p><strong>不是轨迹消息里的 header.stamp</strong></p>
+</li>
+<li><p>是 controller 自己认可的“开始执行时间”</p>
+</li>
+</ul>
+<hr>
+<h3 id="2️⃣-当前轨迹执行时间（关键公式）"><a href="#2️⃣-当前轨迹执行时间（关键公式）" class="headerlink" title="2️⃣ 当前轨迹执行时间（关键公式）"></a>2️⃣ 当前轨迹执行时间（关键公式）</h3><div class="code-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">traj_time = time - trajectory_start_time_;</span><br></pre></td></tr></table></figure></div>
+
+<p>也就是：</p>
+<blockquote>
+<p><strong>traj_time ≡ time_from_start</strong></p>
+</blockquote>
+<p>这一步非常重要：</p>
+<table>
+<thead>
+<tr>
+<th>名字</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>time</code></td>
+<td>当前 update 调用的真实时间</td>
+</tr>
+<tr>
+<td><code>trajectory_start_time_</code></td>
+<td>轨迹开始执行的时间</td>
+</tr>
+<tr>
+<td><code>traj_time</code></td>
+<td>轨迹内部坐标系的时间</td>
+</tr>
+</tbody></table>
+<p>👉 <strong>MoveIt &#x2F; Action 里所有的 <code>time_from_start</code>，最终都要映射到这个 <code>traj_time</code></strong></p>
+<hr>
+<h3 id="3️⃣-为什么不用“第几个点”？"><a href="#3️⃣-为什么不用“第几个点”？" class="headerlink" title="3️⃣ 为什么不用“第几个点”？"></a>3️⃣ 为什么不用“第几个点”？</h3><p>因为 controller 是 <strong>时间驱动（time-driven）</strong>，不是 <strong>索引驱动（index-driven）</strong></p>
+<p>如果你用点索引：</p>
+<ul>
+<li><p>update 频率变化 → 轨迹执行快慢不一致</p>
+</li>
+<li><p>硬件 jitter → 执行抖动</p>
+</li>
+<li><p>插值无法统一</p>
+</li>
+</ul>
+<p><strong>时间是唯一稳定的自变量</strong></p>
+<hr>
+<h2 id="三、time-from-start-是如何映射到轨迹的？"><a href="#三、time-from-start-是如何映射到轨迹的？" class="headerlink" title="三、time_from_start 是如何映射到轨迹的？"></a>三、time_from_start 是如何映射到轨迹的？</h2><h3 id="1️⃣-轨迹在-controller-内部的真实结构"><a href="#1️⃣-轨迹在-controller-内部的真实结构" class="headerlink" title="1️⃣ 轨迹在 controller 内部的真实结构"></a>1️⃣ 轨迹在 controller 内部的真实结构</h3><p><code>active_trajectory_</code> 不是原始的 <code>JointTrajectory</code> 消息<br>而是一个 <strong>Trajectory 对象</strong>（封装后的）：</p>
+<div class="code-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">active_trajectory_-&gt;<span class="built_in">sample</span>(traj_time, ...)</span><br></pre></td></tr></table></figure></div>
+
+<p>它内部大概是：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[t0, t1, t2, ..., tn]</span><br><span class="line">对应</span><br><span class="line">[p0, p1, p2, ..., pn]</span><br></pre></td></tr></table></figure></div>
+
+<p>每个点都有：</p>
+<ul>
+<li><p><code>time_from_start</code></p>
+</li>
+<li><p>positions</p>
+</li>
+<li><p>(可能有) velocities</p>
+</li>
+<li><p>(可能有) accelerations</p>
+</li>
+</ul>
+<hr>
+<h3 id="2️⃣-sample-的本质：时间-→-状态"><a href="#2️⃣-sample-的本质：时间-→-状态" class="headerlink" title="2️⃣ sample() 的本质：时间 → 状态"></a>2️⃣ sample() 的本质：时间 → 状态</h3><div class="code-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> success = active_trajectory_-&gt;<span class="built_in">sample</span>(</span><br><span class="line">  traj_time,</span><br><span class="line">  state_desired_,</span><br><span class="line">  state_next_);</span><br></pre></td></tr></table></figure></div>
+
+<p>它做了三件事：</p>
+<h4 id="①-找区间"><a href="#①-找区间" class="headerlink" title="① 找区间"></a>① 找区间</h4><p>找到满足：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ti &lt;= traj_time &lt; ti+1</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="②-插值"><a href="#②-插值" class="headerlink" title="② 插值"></a>② 插值</h4><p>在 <code>point_i</code> 和 <code>point_&#123;i+1&#125;</code> 之间插值</p>
+<h4 id="③-填充-state-desired"><a href="#③-填充-state-desired" class="headerlink" title="③ 填充 state_desired_"></a>③ 填充 state_desired_</h4><p>得到：</p>
+<div class="code-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">state_desired_.positions</span><br><span class="line">state_desired_.velocities</span><br><span class="line">state_desired_.accelerations</span><br></pre></td></tr></table></figure></div>
+
+<p>⚠️ 注意：<br><strong>controller 从不“跳到某个 trajectory point”</strong><br>它只认：<strong>当前时间对应的状态</strong></p>
+<hr>
+<h2 id="四、trajectory-的-sample-interpolate-过程（工程级解释）"><a href="#四、trajectory-的-sample-interpolate-过程（工程级解释）" class="headerlink" title="四、trajectory 的 sample &#x2F; interpolate 过程（工程级解释）"></a>四、trajectory 的 sample &#x2F; interpolate 过程（工程级解释）</h2><h3 id="1️⃣-插值不是-MoveIt-的事，是-controller-的事"><a href="#1️⃣-插值不是-MoveIt-的事，是-controller-的事" class="headerlink" title="1️⃣ 插值不是 MoveIt 的事，是 controller 的事"></a>1️⃣ 插值不是 MoveIt 的事，是 controller 的事</h3><p>即使 MoveIt 发来 1000 个点：</p>
+<ul>
+<li><p>controller 可能在 <strong>200Hz update</strong></p>
+</li>
+<li><p>但轨迹点只有 <strong>50Hz</strong></p>
+</li>
+</ul>
+<p>👉 <strong>插值是 controller 的职责，不是 planner 的</strong></p>
+<hr>
+<h3 id="2️⃣-插值方式（简化理解）"><a href="#2️⃣-插值方式（简化理解）" class="headerlink" title="2️⃣ 插值方式（简化理解）"></a>2️⃣ 插值方式（简化理解）</h3><p>典型逻辑是：</p>
+<div class="code-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ratio = (traj_time - ti) / (ti<span class="number">+1</span> - ti)</span><br><span class="line">pos = <span class="built_in">lerp</span>(pi, pi<span class="number">+1</span>, ratio)</span><br><span class="line">vel = <span class="built_in">lerp</span>(vi, vi<span class="number">+1</span>, ratio)</span><br><span class="line">acc = <span class="built_in">lerp</span>(ai, ai<span class="number">+1</span>, ratio)</span><br></pre></td></tr></table></figure></div>
+
+<p>这意味着：</p>
+<ul>
+<li><p>执行是 <strong>连续的</strong></p>
+</li>
+<li><p>update 周期怎么抖，轨迹形状都不变</p>
+</li>
+</ul>
+<hr>
+<h3 id="3️⃣-为什么-sample-还给-state-next-？"><a href="#3️⃣-为什么-sample-还给-state-next-？" class="headerlink" title="3️⃣ 为什么 sample() 还给 state_next_？"></a>3️⃣ 为什么 sample() 还给 state_next_？</h3><p>这是为 <strong>C 段（容差 &#x2F; 终点判断）</strong> 服务的<br>我们现在不展开，只知道：</p>
+<blockquote>
+<p>B 段已经提前算好了“下一时间点的期望状态”</p>
+</blockquote>
+<hr>
+<h2 id="五、为什么-controller-不“严格逐点执行”？"><a href="#五、为什么-controller-不“严格逐点执行”？" class="headerlink" title="五、为什么 controller 不“严格逐点执行”？"></a>五、为什么 controller 不“严格逐点执行”？</h2><p>这是你这个 Block 最关键的问题之一。</p>
+<h3 id="❌-错误直觉"><a href="#❌-错误直觉" class="headerlink" title="❌ 错误直觉"></a>❌ 错误直觉</h3><blockquote>
+<p>“轨迹不是一系列点吗？那就一个点一个点执行不就好了？”</p>
+</blockquote>
+<h3 id="✅-工程现实"><a href="#✅-工程现实" class="headerlink" title="✅ 工程现实"></a>✅ 工程现实</h3><h4 id="1️⃣-控制周期-≠-轨迹点周期"><a href="#1️⃣-控制周期-≠-轨迹点周期" class="headerlink" title="1️⃣ 控制周期 ≠ 轨迹点周期"></a>1️⃣ 控制周期 ≠ 轨迹点周期</h4><ul>
+<li><p>update()：100–1000Hz</p>
+</li>
+<li><p>trajectory points：10–100Hz</p>
+</li>
+</ul>
+<p>不可能一一对应。</p>
+<hr>
+<h4 id="2️⃣-实时控制不能阻塞"><a href="#2️⃣-实时控制不能阻塞" class="headerlink" title="2️⃣ 实时控制不能阻塞"></a>2️⃣ 实时控制不能阻塞</h4><p>如果你“等到点 i 执行完再去 i+1”：</p>
+<ul>
+<li><p>硬件 jitter</p>
+</li>
+<li><p>RT 线程阻塞</p>
+</li>
+<li><p>控制不稳定</p>
+</li>
+</ul>
+<p><strong>时间驱动是唯一可实时化的方式</strong></p>
+<hr>
+<h4 id="3️⃣-插值才是“真实轨迹”"><a href="#3️⃣-插值才是“真实轨迹”" class="headerlink" title="3️⃣ 插值才是“真实轨迹”"></a>3️⃣ 插值才是“真实轨迹”</h4><p>轨迹点只是<strong>约束点（waypoints）</strong><br>真实执行的是：</p>
+<blockquote>
+<p><strong>连续函数 q(t)，而不是离散点 q[i]</strong></p>
+</blockquote>
+<hr>
+<h2 id="六、B-段在整个-update-中的地位"><a href="#六、B-段在整个-update-中的地位" class="headerlink" title="六、B 段在整个 update() 中的地位"></a>六、B 段在整个 update() 中的地位</h2><p>你现在可以把 update() 分成这样理解：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A 段：我该执行哪条轨迹？（状态机）</span><br><span class="line">B 段：在当前时间，这条轨迹“应该长什么样？”</span><br><span class="line">C 段：我执行得对不对？（容差）</span><br><span class="line">D 段：把期望值写给硬件</span><br></pre></td></tr></table></figure></div>
+
+<p>👉 <strong>B 段是唯一“纯数学 + 时间”的一段</strong><br>👉 它不关心：</p>
+<ul>
+<li><p>goal</p>
+</li>
+<li><p>action</p>
+</li>
+<li><p>MoveIt</p>
+</li>
+<li><p>硬件接口</p>
+</li>
+</ul>
+<hr>
+<h2 id="七、给你一个“工程级一句话总结”"><a href="#七、给你一个“工程级一句话总结”" class="headerlink" title="七、给你一个“工程级一句话总结”"></a>七、给你一个“工程级一句话总结”</h2><blockquote>
+<p><strong>joint_trajectory_controller 的 B 段不是在“执行点”，<br>而是在“评估一个时间函数在当前时刻的值”。</strong></p>
+</blockquote>
+<p>如果你愿意，下一步（Block 7）我可以带你<strong>直接对着源码</strong>：</p>
+<ul>
+<li><p>把 <code>sample()</code> 内部函数逐层拆开</p>
+</li>
+<li><p>精确指出「哪一行在做区间查找」</p>
+</li>
+<li><p>哪一行在做插值</p>
+</li>
+<li><p>哪一行在处理越界（traj_time &lt; 0 &#x2F; &gt; end）</p>
+</li>
+</ul>
+<p>你现在这个进度，<strong>已经完全到“可以啃源码”的阶段了</strong>。</p>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> controller官方源码解读b</li>
+        <li><strong>Author:</strong> Mojiu</li>
+        <li><strong>Created at
+                :</strong> 2025-08-03 22:17:58</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2026-01-09 17:01:40
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://redefine.ohevan.com/2025/08/03/controller官方源码解读b/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/ros/">#ros</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2025/08/03/%E8%AE%B0%E5%BD%95/%E8%AE%B0%E5%BD%95%E6%A8%A1%E6%9D%BF/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">记录模板</span>
+						<span class="post-nav-item">Prev posts</span>
+					</span>
+				</a>
+			</div>
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2025/08/03/moveit%20action%20controller%E4%B8%89%E8%80%85%E5%85%B3%E7%B3%BB/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">moveit action controller三者关系</span>
+						<span class="post-nav-item">Next posts</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">On this page</div>
+		<div class="page-title">controller官方源码解读b</div>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%A6%E7%BB%86%E4%BB%A3%E7%A0%81"><span class="nav-text">详细代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Block-6%EF%BD%9Cupdate-%E7%9A%84-B-%E6%AE%B5%E5%9C%A8%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%88%E5%B7%A5%E7%A8%8B%E8%A7%86%E8%A7%92%EF%BC%89"><span class="nav-text">Block 6｜update() 的 B 段在做什么（工程视角）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81B-%E6%AE%B5%E7%9A%84%E8%BE%93%E5%85%A5-%E8%BE%93%E5%87%BA%EF%BC%88%E5%85%88%E5%AF%B9%E9%BD%90%E5%BF%83%E6%99%BA%E6%A8%A1%E5%9E%8B%EF%BC%89"><span class="nav-text">一、B 段的输入 &#x2F; 输出（先对齐心智模型）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#B-%E6%AE%B5%E5%B7%B2%E7%9F%A5%E8%BE%93%E5%85%A5"><span class="nav-text">B 段已知输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-%E6%AE%B5%E8%A6%81%E7%AE%97%E5%87%BA%E7%9A%84%E6%A0%B8%E5%BF%83%E4%B8%9C%E8%A5%BF"><span class="nav-text">B 段要算出的核心东西</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4%E6%98%AF%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E7%9A%84%EF%BC%9F"><span class="nav-text">二、当前时间是如何计算的？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%EF%B8%8F%E2%83%A3-%E6%A0%B8%E5%BF%83%E5%8F%98%E9%87%8F%EF%BC%9Atrajectory-%E8%B5%B7%E5%A7%8B%E6%97%B6%E9%97%B4"><span class="nav-text">1️⃣ 核心变量：trajectory 起始时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%EF%B8%8F%E2%83%A3-%E5%BD%93%E5%89%8D%E8%BD%A8%E8%BF%B9%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%EF%BC%88%E5%85%B3%E9%94%AE%E5%85%AC%E5%BC%8F%EF%BC%89"><span class="nav-text">2️⃣ 当前轨迹执行时间（关键公式）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%EF%B8%8F%E2%83%A3-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E7%94%A8%E2%80%9C%E7%AC%AC%E5%87%A0%E4%B8%AA%E7%82%B9%E2%80%9D%EF%BC%9F"><span class="nav-text">3️⃣ 为什么不用“第几个点”？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81time-from-start-%E6%98%AF%E5%A6%82%E4%BD%95%E6%98%A0%E5%B0%84%E5%88%B0%E8%BD%A8%E8%BF%B9%E7%9A%84%EF%BC%9F"><span class="nav-text">三、time_from_start 是如何映射到轨迹的？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%EF%B8%8F%E2%83%A3-%E8%BD%A8%E8%BF%B9%E5%9C%A8-controller-%E5%86%85%E9%83%A8%E7%9A%84%E7%9C%9F%E5%AE%9E%E7%BB%93%E6%9E%84"><span class="nav-text">1️⃣ 轨迹在 controller 内部的真实结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%EF%B8%8F%E2%83%A3-sample-%E7%9A%84%E6%9C%AC%E8%B4%A8%EF%BC%9A%E6%97%B6%E9%97%B4-%E2%86%92-%E7%8A%B6%E6%80%81"><span class="nav-text">2️⃣ sample() 的本质：时间 → 状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81trajectory-%E7%9A%84-sample-interpolate-%E8%BF%87%E7%A8%8B%EF%BC%88%E5%B7%A5%E7%A8%8B%E7%BA%A7%E8%A7%A3%E9%87%8A%EF%BC%89"><span class="nav-text">四、trajectory 的 sample &#x2F; interpolate 过程（工程级解释）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%EF%B8%8F%E2%83%A3-%E6%8F%92%E5%80%BC%E4%B8%8D%E6%98%AF-MoveIt-%E7%9A%84%E4%BA%8B%EF%BC%8C%E6%98%AF-controller-%E7%9A%84%E4%BA%8B"><span class="nav-text">1️⃣ 插值不是 MoveIt 的事，是 controller 的事</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%EF%B8%8F%E2%83%A3-%E6%8F%92%E5%80%BC%E6%96%B9%E5%BC%8F%EF%BC%88%E7%AE%80%E5%8C%96%E7%90%86%E8%A7%A3%EF%BC%89"><span class="nav-text">2️⃣ 插值方式（简化理解）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%EF%B8%8F%E2%83%A3-%E4%B8%BA%E4%BB%80%E4%B9%88-sample-%E8%BF%98%E7%BB%99-state-next-%EF%BC%9F"><span class="nav-text">3️⃣ 为什么 sample() 还给 state_next_？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88-controller-%E4%B8%8D%E2%80%9C%E4%B8%A5%E6%A0%BC%E9%80%90%E7%82%B9%E6%89%A7%E8%A1%8C%E2%80%9D%EF%BC%9F"><span class="nav-text">五、为什么 controller 不“严格逐点执行”？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%9D%8C-%E9%94%99%E8%AF%AF%E7%9B%B4%E8%A7%89"><span class="nav-text">❌ 错误直觉</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%9C%85-%E5%B7%A5%E7%A8%8B%E7%8E%B0%E5%AE%9E"><span class="nav-text">✅ 工程现实</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81B-%E6%AE%B5%E5%9C%A8%E6%95%B4%E4%B8%AA-update-%E4%B8%AD%E7%9A%84%E5%9C%B0%E4%BD%8D"><span class="nav-text">六、B 段在整个 update() 中的地位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E7%BB%99%E4%BD%A0%E4%B8%80%E4%B8%AA%E2%80%9C%E5%B7%A5%E7%A8%8B%E7%BA%A7%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%80%BB%E7%BB%93%E2%80%9D"><span class="nav-text">七、给你一个“工程级一句话总结”</span></a></li></ol></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2026&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Mojiu</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        15 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/build/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
+</body>
+
+</html>

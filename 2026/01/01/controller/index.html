@@ -13,7 +13,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/2025/08/06/ros2标准cmakelist文件的编写/"/>
+    <link rel="canonical" href="http://example.com/2026/01/01/controller/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -23,14 +23,14 @@
         
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="cmakelist文件的编写">
-<meta property="og:url" content="http://example.com/2025/08/06/ros2%E6%A0%87%E5%87%86cmakelist%E6%96%87%E4%BB%B6%E7%9A%84%E7%BC%96%E5%86%99/index.html">
+<meta property="og:title" content="controller详解">
+<meta property="og:url" content="http://example.com/2026/01/01/controller/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
-<meta property="article:published_time" content="2025-08-06T09:35:08.000Z">
-<meta property="article:modified_time" content="2025-11-12T05:46:35.693Z">
+<meta property="article:published_time" content="2026-01-01T14:17:58.000Z">
+<meta property="article:modified_time" content="2026-01-05T09:54:25.012Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="ros">
 <meta name="twitter:card" content="summary">
@@ -46,7 +46,7 @@
     
     <title>
         
-            cmakelist文件的编写 | MojiuBot
+            controller详解 | MojiuBot
         
     </title>
 
@@ -235,7 +235,7 @@
 		<div class="article-title relative w-full">
 			
 			<div class="w-full flex items-center pt-6 justify-start">
-				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">cmakelist文件的编写</h1>
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">controller详解</h1>
 			</div>
 			
 		</div>
@@ -256,15 +256,15 @@
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2025-08-06 17:35:08</span>
-        <span class="mobile">2025-08-06 17:35:08</span>
+        <span class="desktop">2026-01-01 22:17:58</span>
+        <span class="mobile">2026-01-01 22:17:58</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-11-12 13:46:35</span>
-            <span class="mobile">2025-11-12 13:46:35</span>
+            <span class="desktop">2026-01-05 17:54:25</span>
+            <span class="mobile">2026-01-05 17:54:25</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -302,12 +302,187 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<h3 id="ros2的cmakelist编写文档"><a href="#ros2的cmakelist编写文档" class="headerlink" title="ros2的cmakelist编写文档"></a><a class="link"   target="_blank" rel="noopener" href="https://docs.ros.org/en/rolling/How-To-Guides/Ament-CMake-Documentation.html" >ros2的cmakelist编写文档<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></h3><h3 id="模板文件"><a href="#模板文件" class="headerlink" title="模板文件"></a>模板文件</h3><div class="code-container" data-rel="Cmake"><figure class="iseeu highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.8</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">project</span>(demo_cpp_pkg)</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(CMAKE_COMPILER_IS_GNUCXX <span class="keyword">OR</span> CMAKE_CXX_COMPILER_ID <span class="keyword">MATCHES</span> <span class="string">&quot;Clang&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_compile_options</span>(-Wall -Wextra -Wpedantic)</span><br><span class="line"></span><br><span class="line"><span class="keyword">endif</span>()</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="comment"># find dependencies</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">find_package</span>(ament_cmake REQUIRED)</span><br><span class="line"></span><br><span class="line"><span class="comment"># uncomment the following section in order to fill in</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># further dependencies manually.</span></span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 1.查找rclcpp头文件</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">find_package</span>(rclcpp REQUIRED)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.添加可执行文件 cpp_node</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">add_executable</span>(cpp_node src/cpp_node.cpp)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.为cpp_node添加依赖</span></span><br><span class="line"></span><br><span class="line">ament_target_dependencies(cpp_node rclcpp)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 将 cpp_node 拷贝到 install 目录</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">install</span>(TARGETS</span><br><span class="line"></span><br><span class="line">cpp_node</span><br><span class="line"></span><br><span class="line">DESTINATION lib/<span class="variable">$&#123;PROJECT_NAME&#125;</span></span><br><span class="line"></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># find_package(&lt;dependency&gt; REQUIRED)</span></span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(BUILD_TESTING)</span><br><span class="line"></span><br><span class="line"><span class="keyword">find_package</span>(ament_lint_auto REQUIRED)</span><br><span class="line"></span><br><span class="line"><span class="comment"># the following line skips the linter which checks for copyrights</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># comment the line when a copyright and license is added to all source files</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(ament_cmake_copyright_FOUND <span class="keyword">TRUE</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># the following line skips cpplint (only works in a git repo)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># comment the line when this package is in a git repo and when</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># a copyright and license is added to all source files</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(ament_cmake_cpplint_FOUND <span class="keyword">TRUE</span>)</span><br><span class="line"></span><br><span class="line">ament_lint_auto_find_test_dependencies()</span><br><span class="line"></span><br><span class="line"><span class="keyword">endif</span>()</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">ament_package()</span><br></pre></td></tr></table></figure></div>
+			<h1 id="controller详解"><a href="#controller详解" class="headerlink" title="controller详解"></a>controller详解</h1><h2 id="controller骨架"><a href="#controller骨架" class="headerlink" title="controller骨架"></a>controller骨架</h2><p>在 ros2_control 里，几乎一定会看到这样的类结构（我用伪代码）：</p>
+<div class="code-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyJointTrajectoryController</span>   : <span class="keyword">public</span> controller_interface::ControllerInterface &#123; <span class="keyword">public</span>:   <span class="function">controller_interface::CallbackReturn <span class="title">on_init</span><span class="params">()</span> <span class="keyword">override</span></span>;   <span class="function">controller_interface::CallbackReturn <span class="title">on_activate</span><span class="params">()</span> <span class="keyword">override</span></span>;   <span class="function">controller_interface::CallbackReturn <span class="title">on_deactivate</span><span class="params">()</span> <span class="keyword">override</span></span>;    <span class="function">controller_interface::return_type <span class="title">update</span><span class="params">(     </span></span></span><br><span class="line"><span class="params"><span class="function">	<span class="type">const</span> rclcpp::Time &amp; time,     </span></span></span><br><span class="line"><span class="params"><span class="function">	<span class="type">const</span> rclcpp::Duration &amp; period)</span> <span class="keyword">override</span></span>; </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
 
-<hr>
-<h3 id="命令解释"><a href="#命令解释" class="headerlink" title="命令解释"></a>命令解释</h3><ul>
-<li>find_package(ament_cmake REQUIRED)</li>
+<h2 id="四个函数的功能"><a href="#四个函数的功能" class="headerlink" title="四个函数的功能"></a>四个函数的功能</h2><h3 id="1️⃣-on-init-——-启动前准备（非实时）"><a href="#1️⃣-on-init-——-启动前准备（非实时）" class="headerlink" title="1️⃣ on_init() —— 启动前准备（非实时）"></a>1️⃣ <code>on_init()</code> —— 启动前准备（非实时）</h3><p>这里通常做：</p>
+<ul>
+<li><p>读取参数（joint names、接口类型）</p>
+</li>
+<li><p>创建 Action Server（<code>FollowJointTrajectory</code>）</p>
+</li>
+<li><p>初始化缓冲区（trajectory buffer）</p>
+</li>
 </ul>
+<p><strong>记住一句话：</strong></p>
+<blockquote>
+<p>on_init &#x3D; <strong>搭舞台</strong></p>
+</blockquote>
+<hr>
+<h3 id="2️⃣-on-activate-——-真正开始控制"><a href="#2️⃣-on-activate-——-真正开始控制" class="headerlink" title="2️⃣ on_activate() —— 真正开始控制"></a>2️⃣ <code>on_activate()</code> —— 真正开始控制</h3><p>这里做的事：</p>
+<ul>
+<li><p>检查硬件接口是否 ready</p>
+</li>
+<li><p>清空旧轨迹</p>
+</li>
+<li><p>允许 update() 开始跑</p>
+</li>
+</ul>
+<p><strong>记住一句话：</strong></p>
+<blockquote>
+<p>on_activate &#x3D; <strong>按下电源键</strong></p>
+</blockquote>
+<hr>
+<h3 id="3️⃣-update-——-真正“控制”的地方（最重要）"><a href="#3️⃣-update-——-真正“控制”的地方（最重要）" class="headerlink" title="3️⃣ update() —— 真正“控制”的地方（最重要）"></a>3️⃣ <code>update()</code> —— 真正“控制”的地方（最重要）</h3><p>这个函数：</p>
+<ul>
+<li><p><strong>被控制周期性调用</strong></p>
+</li>
+<li><p>频率通常是：</p>
+<ul>
+<li><p>100 Hz</p>
+</li>
+<li><p>250 Hz</p>
+</li>
+<li><p>1000 Hz（真机）</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>你在这里会看到逻辑类似：</p>
+<p><code>current_time = time - trajectory_start_time;  target_point = trajectory.sample(current_time);  write_command_to_hardware(target_point);</code></p>
+<p>👉 <strong>time_from_start 在这里被使用</strong><br>👉 <strong>这是为什么 controller 必须是 C++</strong></p>
+<p><strong>记住一句话：</strong></p>
+<blockquote>
+<p>update() &#x3D; <strong>实时执行轨迹</strong></p>
+</blockquote>
+<hr>
+<h3 id="4️⃣-on-deactivate-——-收尾"><a href="#4️⃣-on-deactivate-——-收尾" class="headerlink" title="4️⃣ on_deactivate() —— 收尾"></a>4️⃣ <code>on_deactivate()</code> —— 收尾</h3><ul>
+<li><p>停止执行</p>
+</li>
+<li><p>清理状态</p>
+</li>
+<li><p>确保安全</p>
+</li>
+</ul>
+<hr>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><blockquote>
+</blockquote>
+<p><strong>Action 不是实时的，update() 才是实时的。</strong></p>
+<p>所以：</p>
+<ul>
+<li><p>❌ 不要在 Action callback 里直接控制硬件</p>
+</li>
+<li><p>✅ Action callback 只做“数据准备”</p>
+</li>
+<li><p>✅ update() 做“周期控制”</p>
+</li>
+</ul>
+<p>这也是 ros2_control 和“普通 ROS 节点”的根本区别。</p>
+<hr>
+<h2 id="代码详解"><a href="#代码详解" class="headerlink" title="代码详解"></a>代码详解</h2><h3 id="源码地图"><a href="#源码地图" class="headerlink" title="源码地图"></a>源码地图</h3><p>逻辑模块可以分成五块：</p>
+<ol>
+<li>Controller 生命周期（on_init &#x2F; on_activate &#x2F; on_deactivate）</li>
+<li>Action Server（FollowJointTrajectory）</li>
+<li>Trajectory 缓冲与采样（trajectory buffer）</li>
+<li>update() 实时循环（核心）</li>
+<li>向硬件接口写命令</li>
+</ol>
+<h3 id="Controller-生命周期：不是控制，只是“准备工作”"><a href="#Controller-生命周期：不是控制，只是“准备工作”" class="headerlink" title="Controller 生命周期：不是控制，只是“准备工作”"></a>Controller 生命周期：不是控制，只是“准备工作”</h3><h3 id="Action-Server：只是“收轨迹”，不执行"><a href="#Action-Server：只是“收轨迹”，不执行" class="headerlink" title="Action Server：只是“收轨迹”，不执行"></a>Action Server：只是“收轨迹”，不执行</h3><h4 id="在源码中你会看到："><a href="#在源码中你会看到：" class="headerlink" title="在源码中你会看到："></a>在源码中你会看到：</h4><p><code>rclcpp_action::create_server&lt;FollowJointTrajectory&gt;(...)</code></p>
+<p>然后是三个回调：</p>
+<p>&#96;&#96;&#96;&#96;handle_goal() handle_accepted() handle_cancel()&#96;&#96;&#96;</p>
+<h4 id="handle-goal"><a href="#handle-goal" class="headerlink" title="handle_goal()"></a><code>handle_goal()</code></h4><ul>
+<li><p>检查 joint_names 是否一致</p>
+</li>
+<li><p>检查 trajectory 是否合法</p>
+</li>
+<li><p>决定接不接受这个 Goal</p>
+</li>
+</ul>
+<p>👉 <strong>纯校验，不动硬件</strong></p>
+<hr>
+<h4 id="handle-accepted"><a href="#handle-accepted" class="headerlink" title="handle_accepted()"></a><code>handle_accepted()</code></h4><ul>
+<li><p>把 <strong>整条 JointTrajectory</strong> 放进 buffer</p>
+</li>
+<li><p>记录 <code>trajectory_start_time</code></p>
+</li>
+<li><p>标记 controller 进入“执行态”</p>
+</li>
+</ul>
+<p>👉 <strong>这是 Action → 实时世界 的“桥”</strong></p>
+<hr>
+<h4 id="handle-cancel"><a href="#handle-cancel" class="headerlink" title="handle_cancel()"></a><code>handle_cancel()</code></h4><ul>
+<li><p>清空当前 trajectory</p>
+</li>
+<li><p>停止 update() 执行</p>
+</li>
+</ul>
+<p>👉 <strong>中断执行的入口</strong></p>
+<hr>
+<h4 id="非常重要的一句话（请记住）"><a href="#非常重要的一句话（请记住）" class="headerlink" title="非常重要的一句话（请记住）"></a>非常重要的一句话（请记住）</h4><blockquote>
+<p><strong>Action 回调里绝对不做实时控制</strong></p>
+</blockquote>
+<p>这就是 ros2_control 的设计红线。</p>
+<hr>
+<h3 id="Trajectory-Buffer：真正的“中枢”"><a href="#Trajectory-Buffer：真正的“中枢”" class="headerlink" title="Trajectory Buffer：真正的“中枢”"></a>Trajectory Buffer：真正的“中枢”</h3><p>在源码里你会看到一个类似这样的成员：</p>
+<p><code>Trajectory trajectory_;</code></p>
+<p>或：</p>
+<p><code>std::shared_ptr&lt;Trajectory&gt; active_trajectory_;</code></p>
+<h4 id="它负责什么？"><a href="#它负责什么？" class="headerlink" title="它负责什么？"></a>它负责什么？</h4><ul>
+<li><p>存完整的 JointTrajectory</p>
+</li>
+<li><p>根据 <code>time_from_start</code> 进行采样</p>
+</li>
+<li><p>提供 <code>sample(time)</code> 接口给 update()</p>
+</li>
+</ul>
+<p>👉 <strong>Action 把轨迹交给它，update() 从它拿目标点</strong></p>
+<hr>
+<h3 id="update-：整个-controller-的“心脏”"><a href="#update-：整个-controller-的“心脏”" class="headerlink" title="update()：整个 controller 的“心脏”"></a>update()：整个 controller 的“心脏”</h3><h3 id="你会在源码里看到类似结构："><a href="#你会在源码里看到类似结构：" class="headerlink" title="你会在源码里看到类似结构："></a>你会在源码里看到类似结构：</h3><p><code>controller_interface::return_type update(   const rclcpp::Time &amp; time,   const rclcpp::Duration &amp; period)</code></p>
+<p>然后核心逻辑通常是：</p>
+<p><code>auto sample = trajectory_.sample(time);  command_position[j] = sample.positions[j]; command_velocity[j] = sample.velocities[j];</code></p>
+<h3 id="工程含义翻译："><a href="#工程含义翻译：" class="headerlink" title="工程含义翻译："></a>工程含义翻译：</h3><ol>
+<li><p><code>time</code>：当前系统时间</p>
+</li>
+<li><p><code>trajectory_start_time</code>：Action 接收时记录</p>
+</li>
+<li><p><code>time - start_time</code> → <strong>执行到第几秒</strong></p>
+</li>
+<li><p>用这个时间去：</p>
+<ul>
+<li><p>插值</p>
+</li>
+<li><p>取目标点</p>
+</li>
+</ul>
+</li>
+<li><p>写入 hardware command interface</p>
+</li>
+</ol>
+<p>👉 <strong>这就是 time_from_start 的最终归宿</strong></p>
+<hr>
+<h3 id="为什么-update-必须“极简”？"><a href="#为什么-update-必须“极简”？" class="headerlink" title="为什么 update() 必须“极简”？"></a>为什么 update() 必须“极简”？</h3><p>你在源码里会发现：</p>
+<ul>
+<li><p>没有 log</p>
+</li>
+<li><p>没有 new&#x2F;delete</p>
+</li>
+<li><p>没有 ROS 通信</p>
+</li>
+</ul>
+<p>原因只有一个：</p>
+<blockquote>
+<p><strong>update() 可能跑在 1kHz</strong></p>
+</blockquote>
+<p>任何不确定性都会毁掉实时性。</p>
+<hr>
+<h2 id="总体"><a href="#总体" class="headerlink" title="总体"></a>总体</h2><blockquote>
+<p><strong>Action &#x3D; 轨迹交付协议</strong><br><strong>Controller &#x3D; 实时执行引擎</strong></p>
+</blockquote>
+<div class="code-container" data-rel="Arduino"><figure class="iseeu highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">MoveIt / Python</span><br><span class="line">    ↓ (Action <span class="built_in">Client</span>)</span><br><span class="line">FollowJointTrajectory</span><br><span class="line">    ↓ (Action <span class="built_in">Server</span>)</span><br><span class="line">C++ Controller</span><br><span class="line">    ↓ (update loop)</span><br><span class="line">Hardware Interface</span><br></pre></td></tr></table></figure></div>
+
+
+<p>MoveIt 规划再复杂，<br>最终都会变成：</p>
+<p><code>JointTrajectory → update() → 硬件</code></p>
 
 		</div>
 
@@ -315,18 +490,18 @@
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> cmakelist文件的编写</li>
+        <li><strong>Title:</strong> controller详解</li>
         <li><strong>Author:</strong> Mojiu</li>
         <li><strong>Created at
-                :</strong> 2025-08-06 17:35:08</li>
+                :</strong> 2026-01-01 22:17:58</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2025-11-12 13:46:35
+                    :</strong> 2026-01-05 17:54:25
             </li>
         
         <li>
-            <strong>Link:</strong> https://redefine.ohevan.com/2025/08/06/ros2标准cmakelist文件的编写/
+            <strong>Link:</strong> https://redefine.ohevan.com/2026/01/01/controller/
         </li>
         <li>
             <strong>
@@ -360,12 +535,12 @@
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
 			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/2025/12/15/Git%E5%B8%B8%E7%94%A8/">
+				<a class="prev" rel="prev" href="/2026/01/05/controller%E5%AE%98%E6%96%B9%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/controller%E5%AE%98%E6%96%B9%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BBa/">
 					<span class="left arrow-icon flex justify-center items-center">
 						<i class="fa-solid fa-chevron-left"></i>
 					</span>
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">git常用</span>
+						<span class="post-nav-title-item">controller官方源码解读a</span>
 						<span class="post-nav-item">Prev posts</span>
 					</span>
 				</a>
@@ -373,9 +548,9 @@
 			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/2025/08/03/%E6%96%87%E7%AB%A0%E6%A8%A1%E6%9D%BF/">
+				<a class="next" rel="next" href="/2025/12/30/%E8%AE%B0%E5%BD%95/2025-12-30/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">文章模板</span>
+						<span class="post-nav-title-item">controller记录</span>
 						<span class="post-nav-item">Next posts</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -439,8 +614,8 @@
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">On this page</div>
-		<div class="page-title">cmakelist文件的编写</div>
-		<ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ros2%E7%9A%84cmakelist%E7%BC%96%E5%86%99%E6%96%87%E6%A1%A3"><span class="nav-text">ros2的cmakelist编写文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E6%96%87%E4%BB%B6"><span class="nav-text">模板文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A7%A3%E9%87%8A"><span class="nav-text">命令解释</span></a></li></ol>
+		<div class="page-title">controller详解</div>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#controller%E8%AF%A6%E8%A7%A3"><span class="nav-text">controller详解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#controller%E9%AA%A8%E6%9E%B6"><span class="nav-text">controller骨架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E4%B8%AA%E5%87%BD%E6%95%B0%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="nav-text">四个函数的功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%EF%B8%8F%E2%83%A3-on-init-%E2%80%94%E2%80%94-%E5%90%AF%E5%8A%A8%E5%89%8D%E5%87%86%E5%A4%87%EF%BC%88%E9%9D%9E%E5%AE%9E%E6%97%B6%EF%BC%89"><span class="nav-text">1️⃣ on_init() —— 启动前准备（非实时）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%EF%B8%8F%E2%83%A3-on-activate-%E2%80%94%E2%80%94-%E7%9C%9F%E6%AD%A3%E5%BC%80%E5%A7%8B%E6%8E%A7%E5%88%B6"><span class="nav-text">2️⃣ on_activate() —— 真正开始控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%EF%B8%8F%E2%83%A3-update-%E2%80%94%E2%80%94-%E7%9C%9F%E6%AD%A3%E2%80%9C%E6%8E%A7%E5%88%B6%E2%80%9D%E7%9A%84%E5%9C%B0%E6%96%B9%EF%BC%88%E6%9C%80%E9%87%8D%E8%A6%81%EF%BC%89"><span class="nav-text">3️⃣ update() —— 真正“控制”的地方（最重要）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%EF%B8%8F%E2%83%A3-on-deactivate-%E2%80%94%E2%80%94-%E6%94%B6%E5%B0%BE"><span class="nav-text">4️⃣ on_deactivate() —— 收尾</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%AF%A6%E8%A7%A3"><span class="nav-text">代码详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BA%90%E7%A0%81%E5%9C%B0%E5%9B%BE"><span class="nav-text">源码地图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Controller-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%EF%BC%9A%E4%B8%8D%E6%98%AF%E6%8E%A7%E5%88%B6%EF%BC%8C%E5%8F%AA%E6%98%AF%E2%80%9C%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C%E2%80%9D"><span class="nav-text">Controller 生命周期：不是控制，只是“准备工作”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Action-Server%EF%BC%9A%E5%8F%AA%E6%98%AF%E2%80%9C%E6%94%B6%E8%BD%A8%E8%BF%B9%E2%80%9D%EF%BC%8C%E4%B8%8D%E6%89%A7%E8%A1%8C"><span class="nav-text">Action Server：只是“收轨迹”，不执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Trajectory-Buffer%EF%BC%9A%E7%9C%9F%E6%AD%A3%E7%9A%84%E2%80%9C%E4%B8%AD%E6%9E%A2%E2%80%9D"><span class="nav-text">Trajectory Buffer：真正的“中枢”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#update-%EF%BC%9A%E6%95%B4%E4%B8%AA-controller-%E7%9A%84%E2%80%9C%E5%BF%83%E8%84%8F%E2%80%9D"><span class="nav-text">update()：整个 controller 的“心脏”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%A0%E4%BC%9A%E5%9C%A8%E6%BA%90%E7%A0%81%E9%87%8C%E7%9C%8B%E5%88%B0%E7%B1%BB%E4%BC%BC%E7%BB%93%E6%9E%84%EF%BC%9A"><span class="nav-text">你会在源码里看到类似结构：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E7%A8%8B%E5%90%AB%E4%B9%89%E7%BF%BB%E8%AF%91%EF%BC%9A"><span class="nav-text">工程含义翻译：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-update-%E5%BF%85%E9%A1%BB%E2%80%9C%E6%9E%81%E7%AE%80%E2%80%9D%EF%BC%9F"><span class="nav-text">为什么 update() 必须“极简”？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E4%BD%93"><span class="nav-text">总体</span></a></li></ol></li></ol>
 
 	</div>
 </div>

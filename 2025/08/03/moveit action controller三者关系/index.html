@@ -13,7 +13,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/2025/08/06/ros2标准cmakelist文件的编写/"/>
+    <link rel="canonical" href="http://example.com/2025/08/03/moveit action controller三者关系/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -23,16 +23,17 @@
         
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="cmakelist文件的编写">
-<meta property="og:url" content="http://example.com/2025/08/06/ros2%E6%A0%87%E5%87%86cmakelist%E6%96%87%E4%BB%B6%E7%9A%84%E7%BC%96%E5%86%99/index.html">
+<meta property="og:title" content="moveit action controller三者关系">
+<meta property="og:url" content="http://example.com/2025/08/03/moveit%20action%20controller%E4%B8%89%E8%80%85%E5%85%B3%E7%B3%BB/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
-<meta property="article:published_time" content="2025-08-06T09:35:08.000Z">
-<meta property="article:modified_time" content="2025-11-12T05:46:35.693Z">
+<meta property="article:published_time" content="2025-08-03T14:17:58.000Z">
+<meta property="article:modified_time" content="2026-01-05T11:13:52.030Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="ros">
+<meta property="article:tag" content="#moveit">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
     
@@ -46,7 +47,7 @@
     
     <title>
         
-            cmakelist文件的编写 | MojiuBot
+            moveit action controller三者关系 | MojiuBot
         
     </title>
 
@@ -235,7 +236,7 @@
 		<div class="article-title relative w-full">
 			
 			<div class="w-full flex items-center pt-6 justify-start">
-				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">cmakelist文件的编写</h1>
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">moveit action controller三者关系</h1>
 			</div>
 			
 		</div>
@@ -256,15 +257,15 @@
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2025-08-06 17:35:08</span>
-        <span class="mobile">2025-08-06 17:35:08</span>
+        <span class="desktop">2025-08-03 22:17:58</span>
+        <span class="mobile">2025-08-03 22:17:58</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-11-12 13:46:35</span>
-            <span class="mobile">2025-11-12 13:46:35</span>
+            <span class="desktop">2026-01-05 19:13:52</span>
+            <span class="mobile">2026-01-05 19:13:52</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -277,6 +278,10 @@
                 
                     <li>
                         <a href="/tags/ros/">ros</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/moveit/">#moveit</a>&nbsp;
                     </li>
                 
             </ul>
@@ -302,12 +307,136 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<h3 id="ros2的cmakelist编写文档"><a href="#ros2的cmakelist编写文档" class="headerlink" title="ros2的cmakelist编写文档"></a><a class="link"   target="_blank" rel="noopener" href="https://docs.ros.org/en/rolling/How-To-Guides/Ament-CMake-Documentation.html" >ros2的cmakelist编写文档<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></h3><h3 id="模板文件"><a href="#模板文件" class="headerlink" title="模板文件"></a>模板文件</h3><div class="code-container" data-rel="Cmake"><figure class="iseeu highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.8</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">project</span>(demo_cpp_pkg)</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(CMAKE_COMPILER_IS_GNUCXX <span class="keyword">OR</span> CMAKE_CXX_COMPILER_ID <span class="keyword">MATCHES</span> <span class="string">&quot;Clang&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_compile_options</span>(-Wall -Wextra -Wpedantic)</span><br><span class="line"></span><br><span class="line"><span class="keyword">endif</span>()</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="comment"># find dependencies</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">find_package</span>(ament_cmake REQUIRED)</span><br><span class="line"></span><br><span class="line"><span class="comment"># uncomment the following section in order to fill in</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># further dependencies manually.</span></span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 1.查找rclcpp头文件</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">find_package</span>(rclcpp REQUIRED)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.添加可执行文件 cpp_node</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">add_executable</span>(cpp_node src/cpp_node.cpp)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.为cpp_node添加依赖</span></span><br><span class="line"></span><br><span class="line">ament_target_dependencies(cpp_node rclcpp)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 将 cpp_node 拷贝到 install 目录</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">install</span>(TARGETS</span><br><span class="line"></span><br><span class="line">cpp_node</span><br><span class="line"></span><br><span class="line">DESTINATION lib/<span class="variable">$&#123;PROJECT_NAME&#125;</span></span><br><span class="line"></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># find_package(&lt;dependency&gt; REQUIRED)</span></span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(BUILD_TESTING)</span><br><span class="line"></span><br><span class="line"><span class="keyword">find_package</span>(ament_lint_auto REQUIRED)</span><br><span class="line"></span><br><span class="line"><span class="comment"># the following line skips the linter which checks for copyrights</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># comment the line when a copyright and license is added to all source files</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(ament_cmake_copyright_FOUND <span class="keyword">TRUE</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># the following line skips cpplint (only works in a git repo)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># comment the line when this package is in a git repo and when</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># a copyright and license is added to all source files</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(ament_cmake_cpplint_FOUND <span class="keyword">TRUE</span>)</span><br><span class="line"></span><br><span class="line">ament_lint_auto_find_test_dependencies()</span><br><span class="line"></span><br><span class="line"><span class="keyword">endif</span>()</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">ament_package()</span><br></pre></td></tr></table></figure></div>
-
+			<h2 id="一、先给一句“定锚结论”"><a href="#一、先给一句“定锚结论”" class="headerlink" title="一、先给一句“定锚结论”"></a>一、先给一句“定锚结论”</h2><blockquote>
+<p><strong>MoveIt &#x3D; 任务 &#x2F; 规划层（Planning &amp; Task Layer）</strong><br><strong>Action（FollowJointTrajectory）&#x3D; 执行接口层（Execution API）</strong><br><strong>Controller（joint_trajectory_controller）&#x3D; 实时控制层（RT Control）</strong></p>
+</blockquote>
+<p>MoveIt <strong>不直接控制硬件</strong>，<br>它<strong>通过 Action 把“执行意图”交给控制器</strong>。</p>
 <hr>
-<h3 id="命令解释"><a href="#命令解释" class="headerlink" title="命令解释"></a>命令解释</h3><ul>
-<li>find_package(ament_cmake REQUIRED)</li>
+<h2 id="二、整体分层结构（从上到下）"><a href="#二、整体分层结构（从上到下）" class="headerlink" title="二、整体分层结构（从上到下）"></a>二、整体分层结构（从上到下）</h2><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">┌──────────────────────────────┐</span><br><span class="line">│ MoveIt                       │</span><br><span class="line">│ 规划 / 任务层                │</span><br><span class="line">│  - IK / Motion Planning      │</span><br><span class="line">│  - Trajectory Generation     │</span><br><span class="line">│  - 时间参数化                │</span><br><span class="line">└───────────────┬──────────────┘</span><br><span class="line">                │ FollowJointTrajectory Action</span><br><span class="line">┌───────────────▼──────────────┐</span><br><span class="line">│ ROS Action Server             │</span><br><span class="line">│（joint_trajectory_controller）│</span><br><span class="line">│ 执行接口 / 状态机（Non-RT）   │</span><br><span class="line">└───────────────┬──────────────┘</span><br><span class="line">                │ RT buffer / pending</span><br><span class="line">┌───────────────▼──────────────┐</span><br><span class="line">│ Controller update() (RT)      │</span><br><span class="line">│  - 轨迹采样                   │</span><br><span class="line">│  - PID / 插值                 │</span><br><span class="line">│  - 实时输出                   │</span><br><span class="line">└───────────────┬──────────────┘</span><br><span class="line">                │ ros2_control</span><br><span class="line">┌───────────────▼──────────────┐</span><br><span class="line">│ Hardware Interface            │</span><br><span class="line">│  - 电机 / 驱动 / IO           │</span><br><span class="line">└──────────────────────────────┘</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<hr>
+<h2 id="三、MoveIt-在“做什么”，它不做什么"><a href="#三、MoveIt-在“做什么”，它不做什么" class="headerlink" title="三、MoveIt 在“做什么”，它不做什么"></a>三、MoveIt 在“做什么”，它<strong>不做什么</strong></h2><h3 id="✅-MoveIt-负责的事（高层）"><a href="#✅-MoveIt-负责的事（高层）" class="headerlink" title="✅ MoveIt 负责的事（高层）"></a>✅ MoveIt 负责的事（高层）</h3><ul>
+<li><p>运动学（FK &#x2F; IK）</p>
+</li>
+<li><p>路径规划（OMPL &#x2F; STOMP &#x2F; CHOMP）</p>
+</li>
+<li><p>约束处理（姿态、碰撞、路径约束）</p>
+</li>
+<li><p>时间参数化（TOTG &#x2F; IPTP）</p>
+</li>
+<li><p>生成 <strong>JointTrajectory</strong></p>
+</li>
 </ul>
+<p>👉 它解决的是：<br><strong>“怎么走这条路”</strong></p>
+<hr>
+<h3 id="❌-MoveIt-不负责的事"><a href="#❌-MoveIt-不负责的事" class="headerlink" title="❌ MoveIt 不负责的事"></a>❌ MoveIt <strong>不</strong>负责的事</h3><ul>
+<li><p>不 1ms 级循环</p>
+</li>
+<li><p>不 PID</p>
+</li>
+<li><p>不 实时性保证</p>
+</li>
+<li><p>不 直接碰硬件</p>
+</li>
+<li><p>不 关心电机状态</p>
+</li>
+</ul>
+<p>👉 它<strong>不适合实时控制</strong></p>
+<hr>
+<h2 id="四、MoveIt-和-Action-的关系"><a href="#四、MoveIt-和-Action-的关系" class="headerlink" title="四、MoveIt 和 Action 的关系"></a>四、MoveIt 和 Action 的关系</h2><h3 id="一句话"><a href="#一句话" class="headerlink" title="一句话"></a>一句话</h3><blockquote>
+<p><strong>MoveIt 是 FollowJointTrajectory 的 Action Client</strong></p>
+</blockquote>
+<p>也就是说：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MoveIt</span><br><span class="line">  └── 发送 FollowJointTrajectory goal</span><br><span class="line">        └── joint_trajectory_controller 接收</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<p>MoveIt <strong>只知道 Action 协议</strong>，<br><strong>不知道 controller 内部怎么实现</strong>。</p>
+<hr>
+<h3 id="MoveIt-发什么？"><a href="#MoveIt-发什么？" class="headerlink" title="MoveIt 发什么？"></a>MoveIt 发什么？</h3><ul>
+<li><p><code>trajectory_msgs/JointTrajectory</code></p>
+</li>
+<li><p><code>time_from_start</code></p>
+</li>
+<li><p><code>path_tolerance / goal_tolerance</code></p>
+</li>
+</ul>
+<hr>
+<h3 id="MoveIt-等什么？"><a href="#MoveIt-等什么？" class="headerlink" title="MoveIt 等什么？"></a>MoveIt 等什么？</h3><ul>
+<li><p>Action 状态：</p>
+<ul>
+<li><p>ACTIVE</p>
+</li>
+<li><p>SUCCEEDED</p>
+</li>
+<li><p>ABORTED</p>
+</li>
+<li><p>CANCELED</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="五、Action-和-Controller-的“边界”"><a href="#五、Action-和-Controller-的“边界”" class="headerlink" title="五、Action 和 Controller 的“边界”"></a>五、Action 和 Controller 的“边界”</h2><p>这是一个<strong>非常重要的理解点</strong>：</p>
+<h3 id="Action-≠-Controller-update"><a href="#Action-≠-Controller-update" class="headerlink" title="Action ≠ Controller update()"></a>Action ≠ Controller update()</h3><table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Controller</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>非实时</td>
+<td>实时</td>
+</tr>
+<tr>
+<td>状态机</td>
+<td>控制环</td>
+</tr>
+<tr>
+<td>生命周期长</td>
+<td>周期短</td>
+</tr>
+<tr>
+<td>语义层</td>
+<td>数值层</td>
+</tr>
+</tbody></table>
+<p>👉 <strong>Action 是“门面”</strong><br>👉 <strong>Controller 是“引擎”</strong></p>
+<hr>
+<h2 id="六、Controller-和-ros2-control-的关系"><a href="#六、Controller-和-ros2-control-的关系" class="headerlink" title="六、Controller 和 ros2_control 的关系"></a>六、Controller 和 ros2_control 的关系</h2><h3 id="Controller-属于："><a href="#Controller-属于：" class="headerlink" title="Controller 属于："></a>Controller 属于：</h3><blockquote>
+<p><strong>ros2_control 的插件体系</strong></p>
+</blockquote>
+<ul>
+<li><p>Controller &#x3D; 插件</p>
+</li>
+<li><p>ros2_control &#x3D; 框架</p>
+</li>
+<li><p>Hardware &#x3D; 插件</p>
+</li>
+</ul>
+<p>它们构成一个 <strong>RT 控制岛</strong>。</p>
+<hr>
+<h2 id="七、MoveIt-和-ros2-control-的关系（关键）"><a href="#七、MoveIt-和-ros2-control-的关系（关键）" class="headerlink" title="七、MoveIt 和 ros2_control 的关系（关键）"></a>七、MoveIt 和 ros2_control 的关系（关键）</h2><blockquote>
+<p><strong>MoveIt 和 ros2_control 不直接耦合</strong></p>
+</blockquote>
+<p>它们通过 <strong>Action 协议解耦</strong>：</p>
+<ul>
+<li><p>你可以：</p>
+<ul>
+<li><p>换控制器（position &#x2F; effort）</p>
+</li>
+<li><p>换硬件</p>
+</li>
+<li><p>换执行频率</p>
+</li>
+</ul>
+</li>
+<li><p>MoveIt <strong>不用改</strong></p>
+</li>
+</ul>
+<p>这就是为什么这个架构能“工业级”。</p>
+<hr>
+<h2 id="八、用一句“系统级语言”总结（非常重要）"><a href="#八、用一句“系统级语言”总结（非常重要）" class="headerlink" title="八、用一句“系统级语言”总结（非常重要）"></a>八、用一句“系统级语言”总结（非常重要）</h2><blockquote>
+<p><strong>MoveIt 决定“我想去哪、怎么去”；<br>Controller 决定“我现在这一毫秒怎么动”；<br>Action 是两者之间的合同。</strong></p>
+</blockquote>
 
 		</div>
 
@@ -315,18 +444,18 @@
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> cmakelist文件的编写</li>
+        <li><strong>Title:</strong> moveit action controller三者关系</li>
         <li><strong>Author:</strong> Mojiu</li>
         <li><strong>Created at
-                :</strong> 2025-08-06 17:35:08</li>
+                :</strong> 2025-08-03 22:17:58</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2025-11-12 13:46:35
+                    :</strong> 2026-01-05 19:13:52
             </li>
         
         <li>
-            <strong>Link:</strong> https://redefine.ohevan.com/2025/08/06/ros2标准cmakelist文件的编写/
+            <strong>Link:</strong> https://redefine.ohevan.com/2025/08/03/moveit action controller三者关系/
         </li>
         <li>
             <strong>
@@ -351,6 +480,10 @@
 				<a href="/tags/ros/">#ros</a>&nbsp;
 			</li>
 			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/moveit/">##moveit</a>&nbsp;
+			</li>
+			
 		</ul>
 		
 
@@ -360,12 +493,12 @@
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
 			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/2025/12/15/Git%E5%B8%B8%E7%94%A8/">
+				<a class="prev" rel="prev" href="/2025/08/03/controller%E5%AE%98%E6%96%B9%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BBb/">
 					<span class="left arrow-icon flex justify-center items-center">
 						<i class="fa-solid fa-chevron-left"></i>
 					</span>
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">git常用</span>
+						<span class="post-nav-title-item">controller官方源码解读b</span>
 						<span class="post-nav-item">Prev posts</span>
 					</span>
 				</a>
@@ -373,9 +506,9 @@
 			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/2025/08/03/%E6%96%87%E7%AB%A0%E6%A8%A1%E6%9D%BF/">
+				<a class="next" rel="next" href="/2025/04/11/ros1%E6%A0%87%E5%87%86cmakelist/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">文章模板</span>
+						<span class="post-nav-title-item">ros1标准cmakelist</span>
 						<span class="post-nav-item">Next posts</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -439,8 +572,8 @@
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">On this page</div>
-		<div class="page-title">cmakelist文件的编写</div>
-		<ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ros2%E7%9A%84cmakelist%E7%BC%96%E5%86%99%E6%96%87%E6%A1%A3"><span class="nav-text">ros2的cmakelist编写文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E6%96%87%E4%BB%B6"><span class="nav-text">模板文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A7%A3%E9%87%8A"><span class="nav-text">命令解释</span></a></li></ol>
+		<div class="page-title">moveit action controller三者关系</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%85%88%E7%BB%99%E4%B8%80%E5%8F%A5%E2%80%9C%E5%AE%9A%E9%94%9A%E7%BB%93%E8%AE%BA%E2%80%9D"><span class="nav-text">一、先给一句“定锚结论”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%95%B4%E4%BD%93%E5%88%86%E5%B1%82%E7%BB%93%E6%9E%84%EF%BC%88%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%EF%BC%89"><span class="nav-text">二、整体分层结构（从上到下）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81MoveIt-%E5%9C%A8%E2%80%9C%E5%81%9A%E4%BB%80%E4%B9%88%E2%80%9D%EF%BC%8C%E5%AE%83%E4%B8%8D%E5%81%9A%E4%BB%80%E4%B9%88"><span class="nav-text">三、MoveIt 在“做什么”，它不做什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%9C%85-MoveIt-%E8%B4%9F%E8%B4%A3%E7%9A%84%E4%BA%8B%EF%BC%88%E9%AB%98%E5%B1%82%EF%BC%89"><span class="nav-text">✅ MoveIt 负责的事（高层）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%9D%8C-MoveIt-%E4%B8%8D%E8%B4%9F%E8%B4%A3%E7%9A%84%E4%BA%8B"><span class="nav-text">❌ MoveIt 不负责的事</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81MoveIt-%E5%92%8C-Action-%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-text">四、MoveIt 和 Action 的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E5%8F%A5%E8%AF%9D"><span class="nav-text">一句话</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MoveIt-%E5%8F%91%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-text">MoveIt 发什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MoveIt-%E7%AD%89%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-text">MoveIt 等什么？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81Action-%E5%92%8C-Controller-%E7%9A%84%E2%80%9C%E8%BE%B9%E7%95%8C%E2%80%9D"><span class="nav-text">五、Action 和 Controller 的“边界”</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Action-%E2%89%A0-Controller-update"><span class="nav-text">Action ≠ Controller update()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81Controller-%E5%92%8C-ros2-control-%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-text">六、Controller 和 ros2_control 的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Controller-%E5%B1%9E%E4%BA%8E%EF%BC%9A"><span class="nav-text">Controller 属于：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81MoveIt-%E5%92%8C-ros2-control-%E7%9A%84%E5%85%B3%E7%B3%BB%EF%BC%88%E5%85%B3%E9%94%AE%EF%BC%89"><span class="nav-text">七、MoveIt 和 ros2_control 的关系（关键）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E7%94%A8%E4%B8%80%E5%8F%A5%E2%80%9C%E7%B3%BB%E7%BB%9F%E7%BA%A7%E8%AF%AD%E8%A8%80%E2%80%9D%E6%80%BB%E7%BB%93%EF%BC%88%E9%9D%9E%E5%B8%B8%E9%87%8D%E8%A6%81%EF%BC%89"><span class="nav-text">八、用一句“系统级语言”总结（非常重要）</span></a></li></ol>
 
 	</div>
 </div>
