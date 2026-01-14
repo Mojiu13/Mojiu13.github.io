@@ -13,7 +13,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/2026/01/14/blog/未命名 1/"/>
+    <link rel="canonical" href="http://example.com/2026/01/14/blog/moveit反向验证controller时间模型/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -23,15 +23,16 @@
         
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/2026/01/14/Blog/%E6%9C%AA%E5%91%BD%E5%90%8D%201/index.html">
+<meta property="og:title" content="moveit反向验证controller时间模型">
+<meta property="og:url" content="http://example.com/2026/01/14/Blog/moveit%E5%8F%8D%E5%90%91%E9%AA%8C%E8%AF%81controller%E6%97%B6%E9%97%B4%E6%A8%A1%E5%9E%8B/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
-<meta property="article:published_time" content="2026-01-14T11:00:27.077Z">
-<meta property="article:modified_time" content="2026-01-14T11:01:55.630Z">
+<meta property="article:published_time" content="2026-01-14T09:18:00.000Z">
+<meta property="article:modified_time" content="2026-01-14T09:42:43.828Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="ros">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
     
@@ -45,7 +46,7 @@
     
     <title>
         
-            MojiuBot - Redefine Your Hexo Journey.
+            moveit反向验证controller时间模型 | MojiuBot
         
     </title>
 
@@ -234,7 +235,7 @@
 		<div class="article-title relative w-full">
 			
 			<div class="w-full flex items-center pt-6 justify-start">
-				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3"></h1>
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">moveit反向验证controller时间模型</h1>
 			</div>
 			
 		</div>
@@ -255,20 +256,31 @@
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2026-01-14 19:27</span>
-        <span class="mobile">2026-01-14 19:27</span>
+        <span class="desktop">2026-01-14 17:18</span>
+        <span class="mobile">2026-01-14 17:18</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-01-14 19:01:55</span>
-            <span class="mobile">2026-01-14 19:01:55</span>
+            <span class="desktop">2026-01-14 17:42:43</span>
+            <span class="mobile">2026-01-14 17:42:43</span>
             <span class="hover-info">Updated</span>
         </span>
     
 
     
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/ros/">ros</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
     
 
     
@@ -290,7 +302,209 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<p>ln -s &#x2F;media&#x2F;mojiu&#x2F;F6C0B799C0B75E951&#x2F;OneDrive&#x2F;应用&#x2F;remotely-save&#x2F;KL&#x2F;B<br>log &#x2F;home&#x2F;mojiu&#x2F;myblog&#x2F;source&#x2F;_posts&#x2F;blog</p>
+			<hr>
+<h1 id="Block-M3b｜MoveIt-侧-trajectory-构造机制（学习大纲）"><a href="#Block-M3b｜MoveIt-侧-trajectory-构造机制（学习大纲）" class="headerlink" title="Block M3b｜MoveIt 侧 trajectory 构造机制（学习大纲）"></a>Block M3b｜MoveIt 侧 trajectory 构造机制（学习大纲）</h1><blockquote>
+<p>主线问题只有一个：<br><strong>controller 里 <code>sample(traj_time)</code> 用的那条轨迹，MoveIt 是怎么一步步“喂”出来的？</strong></p>
+</blockquote>
+<hr>
+<h2 id="一、MoveIt-中「trajectory」的三层结构（非常关键）"><a href="#一、MoveIt-中「trajectory」的三层结构（非常关键）" class="headerlink" title="一、MoveIt 中「trajectory」的三层结构（非常关键）"></a>一、MoveIt 中「trajectory」的三层结构（非常关键）</h2><blockquote>
+<p>目的：先统一“名词 ↔ 实体 ↔ 数据结构”的映射</p>
+</blockquote>
+<h3 id="1️⃣-抽象层：RobotTrajectory"><a href="#1️⃣-抽象层：RobotTrajectory" class="headerlink" title="1️⃣ 抽象层：RobotTrajectory"></a>1️⃣ 抽象层：<code>RobotTrajectory</code></h3><ul>
+<li><p>在 MoveIt 内部的<strong>统一轨迹容器</strong></p>
+</li>
+<li><p>同时承载：</p>
+<ul>
+<li><p>关节轨迹（Joint）</p>
+</li>
+<li><p>笛卡尔轨迹（可选）</p>
+</li>
+</ul>
+</li>
+<li><p><strong>此时还不是 ROS 消息</strong></p>
+</li>
+</ul>
+<p>RobotTrajectory 作为中间层，让 MoveIt 可以：</p>
+<ul>
+<li><p>规划阶段只产出 <strong>path（无时间）</strong></p>
+</li>
+<li><p>后处理阶段再做 <strong>时间参数化（产生相对时间轴）</strong></p>
+</li>
+<li><p>最终导出 JointTrajectory 时，<code>time_from_start</code> 表示：</p>
+<ul>
+<li><p><strong>相对于轨迹起点的相对时间</strong></p>
+</li>
+<li><p>而不是某个外部 wall clock 的绝对时间</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>👉 这就完美适配 controller B 段的模型：<br><strong>controller 用自己的 <code>trajectory_start_time</code> 把相对时间轴“挂到”当前 now 上</strong>，然后在任意时刻采样。<br>👉 对应 controller：</p>
+<blockquote>
+<p><strong>controller 永远看不到 RobotTrajectory，只看到它“被导出”的结果</strong></p>
+</blockquote>
+<hr>
+<h3 id="2️⃣-规划结果层：trajectory-msgs-JointTrajectory"><a href="#2️⃣-规划结果层：trajectory-msgs-JointTrajectory" class="headerlink" title="2️⃣ 规划结果层：trajectory_msgs/JointTrajectory"></a>2️⃣ 规划结果层：<code>trajectory_msgs/JointTrajectory</code></h3><ul>
+<li><p>RobotTrajectory → <strong>导出成 ROS 标准消息</strong></p>
+</li>
+<li><p>包含：</p>
+<ul>
+<li><p><code>joint_names</code></p>
+</li>
+<li><p><code>points[]</code>（positions &#x2F; velocities &#x2F; accelerations &#x2F; time_from_start）</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>👉 对应 controller：</p>
+<blockquote>
+<p><strong>controller 的 active_trajectory_ 就是从这里来的</strong></p>
+</blockquote>
+<hr>
+<h3 id="3️⃣-执行层：FollowJointTrajectory-Action"><a href="#3️⃣-执行层：FollowJointTrajectory-Action" class="headerlink" title="3️⃣ 执行层：FollowJointTrajectory Action"></a>3️⃣ 执行层：<code>FollowJointTrajectory</code> Action</h3><ul>
+<li><p>JointTrajectory 被包装进 Action goal</p>
+</li>
+<li><p>发送给 <code>joint_trajectory_controller</code></p>
+</li>
+</ul>
+<p>👉 对应 controller：</p>
+<blockquote>
+<p><strong>A 段接收 → B 段 sample → C&#x2F;D 段校验与输出</strong></p>
+</blockquote>
+<hr>
+<h2 id="二、RobotTrajectory-是如何“被生成”的（不进插件细节）"><a href="#二、RobotTrajectory-是如何“被生成”的（不进插件细节）" class="headerlink" title="二、RobotTrajectory 是如何“被生成”的（不进插件细节）"></a>二、RobotTrajectory 是如何“被生成”的（不进插件细节）</h2><blockquote>
+<p>目标：只看<strong>结果如何被写入容器</strong>，不看“怎么算出来的”</p>
+</blockquote>
+<h3 id="4️⃣-规划阶段：谁在往-RobotTrajectory-里写点？"><a href="#4️⃣-规划阶段：谁在往-RobotTrajectory-里写点？" class="headerlink" title="4️⃣ 规划阶段：谁在往 RobotTrajectory 里写点？"></a>4️⃣ 规划阶段：谁在往 RobotTrajectory 里写点？</h3><ul>
+<li><p>OMPL &#x2F; CHOMP 等 planner <strong>只负责产出“路径”</strong></p>
+</li>
+<li><p>路径是：</p>
+<ul>
+<li><p>离散的关节状态序列</p>
+</li>
+<li><p><strong>没有时间概念</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>👉 关键结论（先记住）：</p>
+<blockquote>
+<p><strong>规划阶段 ≠ 时间阶段</strong></p>
+</blockquote>
+<hr>
+<h2 id="三、时间是“后加的”，不是规划出来的（核心）"><a href="#三、时间是“后加的”，不是规划出来的（核心）" class="headerlink" title="三、时间是“后加的”，不是规划出来的（核心）"></a>三、时间是“后加的”，不是规划出来的（核心）</h2><blockquote>
+<p>这是整个 Block M3b 的核心思想</p>
+</blockquote>
+<h3 id="5️⃣-时间参数化（Time-Parameterization）"><a href="#5️⃣-时间参数化（Time-Parameterization）" class="headerlink" title="5️⃣ 时间参数化（Time Parameterization）"></a>5️⃣ 时间参数化（Time Parameterization）</h3><ul>
+<li><p>在 MoveIt 中是一个<strong>独立步骤</strong></p>
+</li>
+<li><p>输入：</p>
+<ul>
+<li>RobotTrajectory（只有路径）</li>
+</ul>
+</li>
+<li><p>输出：</p>
+<ul>
+<li><p>给每个 waypoint 分配：</p>
+<ul>
+<li><p>velocity</p>
+</li>
+<li><p>acceleration</p>
+</li>
+<li><p><code>time_from_start</code></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>👉 重要：</p>
+<blockquote>
+<p><strong>time_from_start 在 MoveIt 内部完成，而不是 controller</strong></p>
+</blockquote>
+<hr>
+<h3 id="6️⃣-time-from-start-的工程含义（为-controller-服务）"><a href="#6️⃣-time-from-start-的工程含义（为-controller-服务）" class="headerlink" title="6️⃣ time_from_start 的工程含义（为 controller 服务）"></a>6️⃣ time_from_start 的工程含义（为 controller 服务）</h3><ul>
+<li><p>是一个<strong>严格单调递增的时间轴</strong></p>
+</li>
+<li><p>描述的是：</p>
+<ul>
+<li>“<strong>从轨迹起点开始已经过了多久</strong>”</li>
+</ul>
+</li>
+</ul>
+<p>👉 对应 controller B 段：</p>
+<div class="code-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">traj_time = now - trajectory_start_time;</span><br><span class="line"><span class="built_in">sample</span>(traj_time, ...)</span><br></pre></td></tr></table></figure></div>
+
+<hr>
+<h2 id="四、RobotTrajectory-→-JointTrajectory-的“导出瞬间”"><a href="#四、RobotTrajectory-→-JointTrajectory-的“导出瞬间”" class="headerlink" title="四、RobotTrajectory → JointTrajectory 的“导出瞬间”"></a>四、RobotTrajectory → JointTrajectory 的“导出瞬间”</h2><blockquote>
+<p>这是 MoveIt 与 ros2_control 的<strong>唯一真实接口</strong></p>
+</blockquote>
+<h3 id="7️⃣-导出规则（非常重要）"><a href="#7️⃣-导出规则（非常重要）" class="headerlink" title="7️⃣ 导出规则（非常重要）"></a>7️⃣ 导出规则（非常重要）</h3><ul>
+<li><p>RobotTrajectory 内部数据被“拍平”为：</p>
+<ul>
+<li><code>JointTrajectoryPoint[i].time_from_start</code></li>
+</ul>
+</li>
+<li><p>MoveIt <strong>不关心 controller update 频率</strong></p>
+</li>
+<li><p>只保证：</p>
+<ul>
+<li><p>时间轴连续</p>
+</li>
+<li><p>点序有序</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>👉 对应 controller：</p>
+<blockquote>
+<p><strong>controller 不逐点执行，而是“时间函数求值”</strong></p>
+</blockquote>
+<hr>
+<h2 id="五、为什么它们“刚好适配”-controller-的采样模型"><a href="#五、为什么它们“刚好适配”-controller-的采样模型" class="headerlink" title="五、为什么它们“刚好适配” controller 的采样模型"></a>五、为什么它们“刚好适配” controller 的采样模型</h2><blockquote>
+<p>用你 Block 6 的理解来反证</p>
+</blockquote>
+<h3 id="8️⃣-MoveIt-假设了什么？"><a href="#8️⃣-MoveIt-假设了什么？" class="headerlink" title="8️⃣ MoveIt 假设了什么？"></a>8️⃣ MoveIt 假设了什么？</h3><ul>
+<li><p>controller 是：</p>
+<ul>
+<li><p>周期性 update</p>
+</li>
+<li><p>基于时间采样</p>
+</li>
+</ul>
+</li>
+<li><p>controller 会：</p>
+<ul>
+<li>在任意 <code>traj_time</code> 下插值</li>
+</ul>
+</li>
+</ul>
+<h3 id="9️⃣-controller-又假设了什么？"><a href="#9️⃣-controller-又假设了什么？" class="headerlink" title="9️⃣ controller 又假设了什么？"></a>9️⃣ controller 又假设了什么？</h3><ul>
+<li><p>trajectory 是：</p>
+<ul>
+<li><p>时间参数化完成的</p>
+</li>
+<li><p>不要求逐点对齐 update tick</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>👉 <strong>两边在“时间连续性”上达成隐式契约</strong></p>
+<hr>
+<h2 id="六、工程级闭环总结（你学完应该能一句话说清）"><a href="#六、工程级闭环总结（你学完应该能一句话说清）" class="headerlink" title="六、工程级闭环总结（你学完应该能一句话说清）"></a>六、工程级闭环总结（你学完应该能一句话说清）</h2><blockquote>
+<p>我们最后要收敛到一句话：</p>
+</blockquote>
+<blockquote>
+<p><strong>MoveIt 负责生成“带时间轴的期望运动函数”，<br>controller 只是在实时循环里对这个函数做采样。</strong></p>
+</blockquote>
+<hr>
+<h3 id="✔️-学习节奏建议"><a href="#✔️-学习节奏建议" class="headerlink" title="✔️ 学习节奏建议"></a>✔️ 学习节奏建议</h3><ul>
+<li><p>每一节都 <strong>反向指 controller 的 B 段</strong></p>
+</li>
+<li><p>不引入新系统，只验证你已经啃过的模型</p>
+</li>
+</ul>
+<hr>
 
 		</div>
 
@@ -298,18 +512,18 @@
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> </li>
+        <li><strong>Title:</strong> moveit反向验证controller时间模型</li>
         <li><strong>Author:</strong> Mojiu</li>
         <li><strong>Created at
-                :</strong> 2026-01-14 19:00:27</li>
+                :</strong> 2026-01-14 17:18:00</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2026-01-14 19:01:55
+                    :</strong> 2026-01-14 17:42:43
             </li>
         
         <li>
-            <strong>Link:</strong> https://redefine.ohevan.com/2026/01/14/Blog/未命名 1/
+            <strong>Link:</strong> https://redefine.ohevan.com/2026/01/14/Blog/moveit反向验证controller时间模型/
         </li>
         <li>
             <strong>
@@ -328,6 +542,14 @@
 		
 
 		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/ros/">#ros</a>&nbsp;
+			</li>
+			
+		</ul>
+		
 
 		
 
@@ -335,12 +557,12 @@
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
 			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/2026/01/14/Blog/ros1%E6%A0%87%E5%87%86cmakelist/">
+				<a class="prev" rel="prev" href="/2026/01/14/Blog/%E6%9C%AA%E5%91%BD%E5%90%8D%201/">
 					<span class="left arrow-icon flex justify-center items-center">
 						<i class="fa-solid fa-chevron-left"></i>
 					</span>
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">ros1标准cmakelist</span>
+						<span class="post-nav-title-item"></span>
 						<span class="post-nav-item">Prev posts</span>
 					</span>
 				</a>
@@ -348,9 +570,9 @@
 			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/2026/01/14/Blog/moveit%E5%8F%8D%E5%90%91%E9%AA%8C%E8%AF%81controller%E6%97%B6%E9%97%B4%E6%A8%A1%E5%9E%8B/">
+				<a class="next" rel="next" href="/2026/01/11/Blog/%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%8C%87%E4%BB%A4%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">moveit反向验证controller时间模型</span>
+						<span class="post-nav-title-item">命令行指令脚本文件</span>
 						<span class="post-nav-item">Next posts</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -414,8 +636,8 @@
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">On this page</div>
-		<div class="page-title"></div>
-		
+		<div class="page-title">moveit反向验证controller时间模型</div>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Block-M3b%EF%BD%9CMoveIt-%E4%BE%A7-trajectory-%E6%9E%84%E9%80%A0%E6%9C%BA%E5%88%B6%EF%BC%88%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BA%B2%EF%BC%89"><span class="nav-text">Block M3b｜MoveIt 侧 trajectory 构造机制（学习大纲）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81MoveIt-%E4%B8%AD%E3%80%8Ctrajectory%E3%80%8D%E7%9A%84%E4%B8%89%E5%B1%82%E7%BB%93%E6%9E%84%EF%BC%88%E9%9D%9E%E5%B8%B8%E5%85%B3%E9%94%AE%EF%BC%89"><span class="nav-text">一、MoveIt 中「trajectory」的三层结构（非常关键）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%EF%B8%8F%E2%83%A3-%E6%8A%BD%E8%B1%A1%E5%B1%82%EF%BC%9ARobotTrajectory"><span class="nav-text">1️⃣ 抽象层：RobotTrajectory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%EF%B8%8F%E2%83%A3-%E8%A7%84%E5%88%92%E7%BB%93%E6%9E%9C%E5%B1%82%EF%BC%9Atrajectory-msgs-JointTrajectory"><span class="nav-text">2️⃣ 规划结果层：trajectory_msgs&#x2F;JointTrajectory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%EF%B8%8F%E2%83%A3-%E6%89%A7%E8%A1%8C%E5%B1%82%EF%BC%9AFollowJointTrajectory-Action"><span class="nav-text">3️⃣ 执行层：FollowJointTrajectory Action</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81RobotTrajectory-%E6%98%AF%E5%A6%82%E4%BD%95%E2%80%9C%E8%A2%AB%E7%94%9F%E6%88%90%E2%80%9D%E7%9A%84%EF%BC%88%E4%B8%8D%E8%BF%9B%E6%8F%92%E4%BB%B6%E7%BB%86%E8%8A%82%EF%BC%89"><span class="nav-text">二、RobotTrajectory 是如何“被生成”的（不进插件细节）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4%EF%B8%8F%E2%83%A3-%E8%A7%84%E5%88%92%E9%98%B6%E6%AE%B5%EF%BC%9A%E8%B0%81%E5%9C%A8%E5%BE%80-RobotTrajectory-%E9%87%8C%E5%86%99%E7%82%B9%EF%BC%9F"><span class="nav-text">4️⃣ 规划阶段：谁在往 RobotTrajectory 里写点？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%97%B6%E9%97%B4%E6%98%AF%E2%80%9C%E5%90%8E%E5%8A%A0%E7%9A%84%E2%80%9D%EF%BC%8C%E4%B8%8D%E6%98%AF%E8%A7%84%E5%88%92%E5%87%BA%E6%9D%A5%E7%9A%84%EF%BC%88%E6%A0%B8%E5%BF%83%EF%BC%89"><span class="nav-text">三、时间是“后加的”，不是规划出来的（核心）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5%EF%B8%8F%E2%83%A3-%E6%97%B6%E9%97%B4%E5%8F%82%E6%95%B0%E5%8C%96%EF%BC%88Time-Parameterization%EF%BC%89"><span class="nav-text">5️⃣ 时间参数化（Time Parameterization）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6%EF%B8%8F%E2%83%A3-time-from-start-%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%90%AB%E4%B9%89%EF%BC%88%E4%B8%BA-controller-%E6%9C%8D%E5%8A%A1%EF%BC%89"><span class="nav-text">6️⃣ time_from_start 的工程含义（为 controller 服务）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81RobotTrajectory-%E2%86%92-JointTrajectory-%E7%9A%84%E2%80%9C%E5%AF%BC%E5%87%BA%E7%9E%AC%E9%97%B4%E2%80%9D"><span class="nav-text">四、RobotTrajectory → JointTrajectory 的“导出瞬间”</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7%EF%B8%8F%E2%83%A3-%E5%AF%BC%E5%87%BA%E8%A7%84%E5%88%99%EF%BC%88%E9%9D%9E%E5%B8%B8%E9%87%8D%E8%A6%81%EF%BC%89"><span class="nav-text">7️⃣ 导出规则（非常重要）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AE%83%E4%BB%AC%E2%80%9C%E5%88%9A%E5%A5%BD%E9%80%82%E9%85%8D%E2%80%9D-controller-%E7%9A%84%E9%87%87%E6%A0%B7%E6%A8%A1%E5%9E%8B"><span class="nav-text">五、为什么它们“刚好适配” controller 的采样模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8%EF%B8%8F%E2%83%A3-MoveIt-%E5%81%87%E8%AE%BE%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-text">8️⃣ MoveIt 假设了什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9%EF%B8%8F%E2%83%A3-controller-%E5%8F%88%E5%81%87%E8%AE%BE%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-text">9️⃣ controller 又假设了什么？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E5%B7%A5%E7%A8%8B%E7%BA%A7%E9%97%AD%E7%8E%AF%E6%80%BB%E7%BB%93%EF%BC%88%E4%BD%A0%E5%AD%A6%E5%AE%8C%E5%BA%94%E8%AF%A5%E8%83%BD%E4%B8%80%E5%8F%A5%E8%AF%9D%E8%AF%B4%E6%B8%85%EF%BC%89"><span class="nav-text">六、工程级闭环总结（你学完应该能一句话说清）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%9C%94%EF%B8%8F-%E5%AD%A6%E4%B9%A0%E8%8A%82%E5%A5%8F%E5%BB%BA%E8%AE%AE"><span class="nav-text">✔️ 学习节奏建议</span></a></li></ol></li></ol></li></ol>
 
 	</div>
 </div>
