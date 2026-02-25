@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Mojiu">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2026/02/25/blog/ros/moveit 与 tf  robotmodel 的关系/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MoveIt 与 TF &#x2F; RobotModel 的关系">
+<meta property="og:url" content="http://example.com/2026/02/25/Blog/ros/MoveIt%20%E4%B8%8E%20TF%20%20RobotModel%20%E7%9A%84%E5%85%B3%E7%B3%BB/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2026-02-25T14:17:58.000Z">
+<meta property="article:modified_time" content="2026-02-25T08:36:04.843Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="ros">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            MoveIt 与 TF / RobotModel 的关系 | MojiuBot
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Theme Redefine","subtitle":{"text":[],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                MojiuBot
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">5</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">19</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">MoveIt 与 TF / RobotModel 的关系</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/redefine-avatar.svg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">Mojiu</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv3</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2026-02-25 22:17:58</span>
+        <span class="mobile">2026-02-25 22:17:58</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2026-02-25 16:36:04</span>
+            <span class="mobile">2026-02-25 16:36:04</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/ros/">ros</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<hr>
+<h1 id="一、系统分层总览（执行视角）"><a href="#一、系统分层总览（执行视角）" class="headerlink" title="一、系统分层总览（执行视角）"></a>一、系统分层总览（执行视角）</h1><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">TF（目标表达）</span><br><span class="line">    ↓</span><br><span class="line">RobotModel（结构定义）</span><br><span class="line">    ↓</span><br><span class="line">RobotState（姿态容器）</span><br><span class="line">    ↓</span><br><span class="line">Planning Pipeline</span><br><span class="line">    ↓</span><br><span class="line">JointTrajectory（时间参数化结果）</span><br><span class="line">    ↓</span><br><span class="line">Controller（时间驱动执行）</span><br></pre></td></tr></table></figure></div>
+
+<p>核心分层原则：</p>
+<ul>
+<li><p>空间问题在规划层被完全消化</p>
+</li>
+<li><p>执行层只处理时间序列</p>
+</li>
+</ul>
+<hr>
+<h1 id="二、RobotModel-的真实职责"><a href="#二、RobotModel-的真实职责" class="headerlink" title="二、RobotModel 的真实职责"></a>二、RobotModel 的真实职责</h1><h2 id="1️⃣-本质"><a href="#1️⃣-本质" class="headerlink" title="1️⃣ 本质"></a>1️⃣ 本质</h2><blockquote>
+<p>RobotModel &#x3D; 机器人结构与约束的静态定义</p>
+</blockquote>
+<p>包含：</p>
+<ul>
+<li><p>link tree 拓扑</p>
+</li>
+<li><p>joint 类型</p>
+</li>
+<li><p>joint limits</p>
+</li>
+<li><p>group 划分</p>
+</li>
+<li><p>运动学链结构</p>
+</li>
+</ul>
+<p>不包含：</p>
+<ul>
+<li><p>当前 joint 状态</p>
+</li>
+<li><p>时间信息</p>
+</li>
+<li><p>TF 信息</p>
+</li>
+</ul>
+<hr>
+<h2 id="2️⃣-它为-trajectory-提供什么？"><a href="#2️⃣-它为-trajectory-提供什么？" class="headerlink" title="2️⃣ 它为 trajectory 提供什么？"></a>2️⃣ 它为 trajectory 提供什么？</h2><p>规划器生成 trajectory 之前必须知道：</p>
+<ul>
+<li><p>有多少个 joint？</p>
+</li>
+<li><p>顺序是什么？</p>
+</li>
+<li><p>上下限是多少？</p>
+</li>
+<li><p>哪些 joint 属于该 planning group？</p>
+</li>
+</ul>
+<p>这些全部来自 RobotModel。</p>
+<hr>
+<h2 id="3️⃣-如果-RobotModel-错误"><a href="#3️⃣-如果-RobotModel-错误" class="headerlink" title="3️⃣ 如果 RobotModel 错误"></a>3️⃣ 如果 RobotModel 错误</h2><table>
+<thead>
+<tr>
+<th>错误类型</th>
+<th>首先暴露层</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>拓扑错误</td>
+<td>IK &#x2F; FK 失败</td>
+</tr>
+<tr>
+<td>limit 过窄</td>
+<td>规划失败</td>
+</tr>
+<tr>
+<td>limit 过宽</td>
+<td>执行阶段硬件报错</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="三、RobotState-的工程定位"><a href="#三、RobotState-的工程定位" class="headerlink" title="三、RobotState 的工程定位"></a>三、RobotState 的工程定位</h1><h2 id="1️⃣-本质-1"><a href="#1️⃣-本质-1" class="headerlink" title="1️⃣ 本质"></a>1️⃣ 本质</h2><blockquote>
+<p>RobotState &#x3D; 基于 RobotModel 的“可变姿态容器”</p>
+</blockquote>
+<p>包含：</p>
+<ul>
+<li><p>当前 joint 值</p>
+</li>
+<li><p>FK 计算能力</p>
+</li>
+<li><p>IK 求解能力</p>
+</li>
+<li><p>碰撞检测能力</p>
+</li>
+</ul>
+<p>不包含：</p>
+<ul>
+<li>时间推进</li>
+</ul>
+<hr>
+<h2 id="2️⃣-trajectory-的本质"><a href="#2️⃣-trajectory-的本质" class="headerlink" title="2️⃣ trajectory 的本质"></a>2️⃣ trajectory 的本质</h2><blockquote>
+<p>trajectory &#x3D; RobotState 在时间轴上的离散采样</p>
+</blockquote>
+<p>生成流程：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">当前状态</span><br><span class="line">   ↓</span><br><span class="line">目标 pose</span><br><span class="line">   ↓</span><br><span class="line">IK → 一系列 RobotState</span><br><span class="line">   ↓</span><br><span class="line">插值</span><br><span class="line">   ↓</span><br><span class="line">时间参数化</span><br><span class="line">   ↓</span><br><span class="line">JointTrajectory</span><br></pre></td></tr></table></figure></div>
+
+<hr>
+<h1 id="四、TF-的真实作用范围"><a href="#四、TF-的真实作用范围" class="headerlink" title="四、TF 的真实作用范围"></a>四、TF 的真实作用范围</h1><h2 id="1️⃣-TF-只用于"><a href="#1️⃣-TF-只用于" class="headerlink" title="1️⃣ TF 只用于"></a>1️⃣ TF 只用于</h2><ul>
+<li><p>目标 pose 坐标转换</p>
+</li>
+<li><p>当前状态 frame 转换</p>
+</li>
+</ul>
+<hr>
+<h2 id="2️⃣-TF-不参与"><a href="#2️⃣-TF-不参与" class="headerlink" title="2️⃣ TF 不参与"></a>2️⃣ TF 不参与</h2><ul>
+<li><p>IK 内部计算</p>
+</li>
+<li><p>FK 计算</p>
+</li>
+<li><p>trajectory 执行</p>
+</li>
+<li><p>controller update()</p>
+</li>
+</ul>
+<hr>
+<h2 id="3️⃣-关键结论"><a href="#3️⃣-关键结论" class="headerlink" title="3️⃣ 关键结论"></a>3️⃣ 关键结论</h2><blockquote>
+<p>TF 只存在于“目标输入阶段”</p>
+</blockquote>
+<p>一旦 trajectory 生成：</p>
+<blockquote>
+<p>TF 在系统中完全消失。</p>
+</blockquote>
+<hr>
+<h1 id="五、为什么-Controller-完全不关心-TF？"><a href="#五、为什么-Controller-完全不关心-TF？" class="headerlink" title="五、为什么 Controller 完全不关心 TF？"></a>五、为什么 Controller 完全不关心 TF？</h1><p>controller 输入：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">joint_names</span><br><span class="line">positions</span><br><span class="line">velocities</span><br><span class="line">time_from_start</span><br></pre></td></tr></table></figure></div>
+
+<p>它解决的问题是：</p>
+<blockquote>
+<p>在时间 t 应该输出什么 joint 指令？</p>
+</blockquote>
+<p>它不解决：</p>
+<ul>
+<li><p>机器人在空间中在哪里</p>
+</li>
+<li><p>末端在世界中的位置</p>
+</li>
+<li><p>目标物体在哪里</p>
+</li>
+</ul>
+<p>这是空间问题。</p>
+<p>controller 只解决时间问题。</p>
+<hr>
+<h1 id="六、错误暴露优先级（执行系统视角）"><a href="#六、错误暴露优先级（执行系统视角）" class="headerlink" title="六、错误暴露优先级（执行系统视角）"></a>六、错误暴露优先级（执行系统视角）</h1><p>从最早暴露 → 最晚暴露：</p>
+<ol>
+<li><p>RobotModel 拓扑错误</p>
+</li>
+<li><p>SRDF group 错误</p>
+</li>
+<li><p>TF 错误（目标空间错误）</p>
+</li>
+<li><p>Joint limit 过宽（执行阶段）</p>
+</li>
+</ol>
+<hr>
+<h1 id="七、执行抖动的优先排查逻辑"><a href="#七、执行抖动的优先排查逻辑" class="headerlink" title="七、执行抖动的优先排查逻辑"></a>七、执行抖动的优先排查逻辑</h1><p>若执行时出现抖动：</p>
+<p>优先检查：</p>
+<blockquote>
+<p>trajectory 时间参数化</p>
+</blockquote>
+<p>而不是：</p>
+<ul>
+<li><p>TF</p>
+</li>
+<li><p>RobotModel</p>
+</li>
+<li><p>IK</p>
+</li>
+</ul>
+<p>因为 controller 只是时间插值器。</p>
+<hr>
+<h1 id="八、分层总结（核心认知）"><a href="#八、分层总结（核心认知）" class="headerlink" title="八、分层总结（核心认知）"></a>八、分层总结（核心认知）</h1><h2 id="🧱-RobotModel"><a href="#🧱-RobotModel" class="headerlink" title="🧱 RobotModel"></a>🧱 RobotModel</h2><p>决定“结构是否可计算”</p>
+<h2 id="🧩-RobotState"><a href="#🧩-RobotState" class="headerlink" title="🧩 RobotState"></a>🧩 RobotState</h2><p>决定“当前姿态如何计算”</p>
+<h2 id="🌍-TF"><a href="#🌍-TF" class="headerlink" title="🌍 TF"></a>🌍 TF</h2><p>决定“目标如何表达”</p>
+<h2 id="⚙️-Controller"><a href="#⚙️-Controller" class="headerlink" title="⚙️ Controller"></a>⚙️ Controller</h2><p>决定“在时间 t 输出什么 joint 值”</p>
+<hr>
+<h1 id="九、Block-M5-最核心结论"><a href="#九、Block-M5-最核心结论" class="headerlink" title="九、Block M5 最核心结论"></a>九、Block M5 最核心结论</h1><blockquote>
+<p>建模层服务规划层<br>规划层输出 joint 序列<br>执行层只消费时间参数化后的 joint 数据<br>空间在规划层终结<br>时间在执行层开始</p>
+</blockquote>
+<hr>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> MoveIt 与 TF / RobotModel 的关系</li>
+        <li><strong>Author:</strong> Mojiu</li>
+        <li><strong>Created at
+                :</strong> 2026-02-25 22:17:58</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2026-02-25 16:36:04
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://redefine.ohevan.com/2026/02/25/Blog/ros/MoveIt 与 TF  RobotModel 的关系/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/ros/">#ros</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2026/02/18/Blog/ros/moveit/MoveIt%20%E5%9C%A8%E6%89%A7%E8%A1%8C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2%E4%B8%8E%E8%BE%B9%E7%95%8C/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">MoveIt 在执行系统中的角色与边界</span>
+						<span class="post-nav-item">Next posts</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">On this page</div>
+		<div class="page-title">MoveIt 与 TF / RobotModel 的关系</div>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%B3%BB%E7%BB%9F%E5%88%86%E5%B1%82%E6%80%BB%E8%A7%88%EF%BC%88%E6%89%A7%E8%A1%8C%E8%A7%86%E8%A7%92%EF%BC%89"><span class="nav-text">一、系统分层总览（执行视角）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81RobotModel-%E7%9A%84%E7%9C%9F%E5%AE%9E%E8%81%8C%E8%B4%A3"><span class="nav-text">二、RobotModel 的真实职责</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%EF%B8%8F%E2%83%A3-%E6%9C%AC%E8%B4%A8"><span class="nav-text">1️⃣ 本质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%EF%B8%8F%E2%83%A3-%E5%AE%83%E4%B8%BA-trajectory-%E6%8F%90%E4%BE%9B%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-text">2️⃣ 它为 trajectory 提供什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%EF%B8%8F%E2%83%A3-%E5%A6%82%E6%9E%9C-RobotModel-%E9%94%99%E8%AF%AF"><span class="nav-text">3️⃣ 如果 RobotModel 错误</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81RobotState-%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%AE%9A%E4%BD%8D"><span class="nav-text">三、RobotState 的工程定位</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%EF%B8%8F%E2%83%A3-%E6%9C%AC%E8%B4%A8-1"><span class="nav-text">1️⃣ 本质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%EF%B8%8F%E2%83%A3-trajectory-%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="nav-text">2️⃣ trajectory 的本质</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81TF-%E7%9A%84%E7%9C%9F%E5%AE%9E%E4%BD%9C%E7%94%A8%E8%8C%83%E5%9B%B4"><span class="nav-text">四、TF 的真实作用范围</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%EF%B8%8F%E2%83%A3-TF-%E5%8F%AA%E7%94%A8%E4%BA%8E"><span class="nav-text">1️⃣ TF 只用于</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%EF%B8%8F%E2%83%A3-TF-%E4%B8%8D%E5%8F%82%E4%B8%8E"><span class="nav-text">2️⃣ TF 不参与</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%EF%B8%8F%E2%83%A3-%E5%85%B3%E9%94%AE%E7%BB%93%E8%AE%BA"><span class="nav-text">3️⃣ 关键结论</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88-Controller-%E5%AE%8C%E5%85%A8%E4%B8%8D%E5%85%B3%E5%BF%83-TF%EF%BC%9F"><span class="nav-text">五、为什么 Controller 完全不关心 TF？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E9%94%99%E8%AF%AF%E6%9A%B4%E9%9C%B2%E4%BC%98%E5%85%88%E7%BA%A7%EF%BC%88%E6%89%A7%E8%A1%8C%E7%B3%BB%E7%BB%9F%E8%A7%86%E8%A7%92%EF%BC%89"><span class="nav-text">六、错误暴露优先级（执行系统视角）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E6%89%A7%E8%A1%8C%E6%8A%96%E5%8A%A8%E7%9A%84%E4%BC%98%E5%85%88%E6%8E%92%E6%9F%A5%E9%80%BB%E8%BE%91"><span class="nav-text">七、执行抖动的优先排查逻辑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E5%88%86%E5%B1%82%E6%80%BB%E7%BB%93%EF%BC%88%E6%A0%B8%E5%BF%83%E8%AE%A4%E7%9F%A5%EF%BC%89"><span class="nav-text">八、分层总结（核心认知）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%A7%B1-RobotModel"><span class="nav-text">🧱 RobotModel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%A7%A9-RobotState"><span class="nav-text">🧩 RobotState</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%8C%8D-TF"><span class="nav-text">🌍 TF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9A%99%EF%B8%8F-Controller"><span class="nav-text">⚙️ Controller</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B9%9D%E3%80%81Block-M5-%E6%9C%80%E6%A0%B8%E5%BF%83%E7%BB%93%E8%AE%BA"><span class="nav-text">九、Block M5 最核心结论</span></a></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2026&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Mojiu</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        19 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/build/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
+</body>
+
+</html>

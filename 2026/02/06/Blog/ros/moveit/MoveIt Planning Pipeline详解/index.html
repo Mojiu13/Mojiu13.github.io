@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Mojiu">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2026/02/06/blog/ros/moveit/moveit planning pipeline详解/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MoveIt Planning Pipeline">
+<meta property="og:url" content="http://example.com/2026/02/06/Blog/ros/moveit/MoveIt%20Planning%20Pipeline%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2026-02-06T14:17:58.000Z">
+<meta property="article:modified_time" content="2026-02-25T01:22:44.979Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="moveit">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            MoveIt Planning Pipeline | MojiuBot
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Theme Redefine","subtitle":{"text":[],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                MojiuBot
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">5</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">19</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">MoveIt Planning Pipeline</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/redefine-avatar.svg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">Mojiu</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv3</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2026-02-06 22:17:58</span>
+        <span class="mobile">2026-02-06 22:17:58</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2026-02-25 09:22:44</span>
+            <span class="mobile">2026-02-25 09:22:44</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/moveit/">moveit</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<hr>
+<h1 id="Block-M2｜MoveIt-Planning-Pipeline（执行系统接口视角）"><a href="#Block-M2｜MoveIt-Planning-Pipeline（执行系统接口视角）" class="headerlink" title="Block M2｜MoveIt Planning Pipeline（执行系统接口视角）"></a>Block M2｜MoveIt Planning Pipeline（执行系统接口视角）</h1><p><strong>主题主线：为什么 MoveIt 只生成 trajectory，而不是直接下发 position</strong></p>
+<blockquote>
+<p>视角前提：<br>✅ 你已经完全理解 controller 的时间推进 + 采样模型<br>✅ 你已经明确 controller &#x2F; hardware 的真实边界<br>❌ 本 Block 不讨论任何算法细节，只讨论“接口为什么这么设计”</p>
+</blockquote>
+<hr>
+<h2 id="M2-0｜重新画一条“执行导向”的系统边界图（对齐-Block-M1）"><a href="#M2-0｜重新画一条“执行导向”的系统边界图（对齐-Block-M1）" class="headerlink" title="M2-0｜重新画一条“执行导向”的系统边界图（对齐 Block M1）"></a>M2-0｜重新画一条“执行导向”的系统边界图（对齐 Block M1）</h2><p><strong>目标</strong>：把 Planning Pipeline 放回你已经理解的执行系统里</p>
+<ul>
+<li><p>MoveIt 在整个系统中的“非实时定位”</p>
+</li>
+<li><p>Planning Pipeline 位于：</p>
+<ul>
+<li><p><strong>Action 之前</strong></p>
+</li>
+<li><p><strong>Controller 之外</strong></p>
+</li>
+<li><p><strong>Hardware 之上</strong></p>
+</li>
+</ul>
+</li>
+<li><p>从 controller 视角反推：</p>
+<ul>
+<li>controller 真正“需要”的是什么类型的数据？</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>🔑 本节会把 <strong>Planning Pipeline 的输入 &#x2F; 输出</strong> 和<br>你已经精读的 <code>update()</code> 中 <strong>轨迹假设</strong> 对齐</p>
+</blockquote>
+<hr>
+<h2 id="M2-1｜Planning-Pipeline-的工程定位：它解决的不是“控制”，而是“执行前的确定性”"><a href="#M2-1｜Planning-Pipeline-的工程定位：它解决的不是“控制”，而是“执行前的确定性”" class="headerlink" title="M2-1｜Planning Pipeline 的工程定位：它解决的不是“控制”，而是“执行前的确定性”"></a>M2-1｜Planning Pipeline 的工程定位：它解决的不是“控制”，而是“执行前的确定性”</h2><p><strong>核心问题</strong>：</p>
+<blockquote>
+<p>如果 controller 已经能稳定执行 trajectory，<br>那 Planning Pipeline 还“必须存在”的工程原因是什么？</p>
+</blockquote>
+<p>本节将拆解：</p>
+<ul>
+<li><p>Planning Pipeline 在系统中承担的唯一责任</p>
+</li>
+<li><p>它解决的是哪一类 controller <strong>不能、也不应该</strong>解决的问题</p>
+</li>
+<li><p>为什么这些问题<strong>必须在“时间轴生成之前”完成</strong></p>
+</li>
+</ul>
+<blockquote>
+<p>对齐点：<br>controller 的 <code>sample(t)</code> 为什么假设 trajectory 已经是“干净的”</p>
+</blockquote>
+<hr>
+<h2 id="M2-2｜为什么-Planning-Pipeline-的最终产物是-RobotTrajectory-JointTrajectory"><a href="#M2-2｜为什么-Planning-Pipeline-的最终产物是-RobotTrajectory-JointTrajectory" class="headerlink" title="M2-2｜为什么 Planning Pipeline 的最终产物是 RobotTrajectory &#x2F; JointTrajectory"></a>M2-2｜为什么 Planning Pipeline 的最终产物是 RobotTrajectory &#x2F; JointTrajectory</h2><p><strong>这是整个 Block 的中心</strong></p>
+<p>我们会从 controller 的行为<strong>反向推导</strong>：</p>
+<ul>
+<li><p>controller 的核心假设：</p>
+<ul>
+<li><p>trajectory 是 <strong>时间参数化的</strong></p>
+</li>
+<li><p>trajectory 是 <strong>离散点 + 插值可定义的</strong></p>
+</li>
+</ul>
+</li>
+<li><p>JointTrajectory 在接口层面提供了什么？</p>
+<ul>
+<li><p>时间单调性</p>
+</li>
+<li><p>全关节同步快照</p>
+</li>
+<li><p>插值语义的“合法输入空间”</p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>你会看到：<br><strong>JointTrajectory 不是“规划结果”，而是“执行接口契约”</strong></p>
+</blockquote>
+<hr>
+<h2 id="M2-3｜为什么-Planning-Pipeline-不直接输出-position-setpoint"><a href="#M2-3｜为什么-Planning-Pipeline-不直接输出-position-setpoint" class="headerlink" title="M2-3｜为什么 Planning Pipeline 不直接输出 position setpoint"></a>M2-3｜为什么 Planning Pipeline 不直接输出 position setpoint</h2><p>这一节会非常“工程”，不讲任何算法。</p>
+<p>我们会逐条否定这种设计：</p>
+<ul>
+<li><p>如果 Planning Pipeline 直接输出 position：</p>
+<ul>
+<li><p>controller 的 <code>update()</code> 会被迫承担什么？</p>
+</li>
+<li><p>时间推进模型会在哪里崩塌？</p>
+</li>
+</ul>
+</li>
+<li><p>position setpoint 与 controller 的：</p>
+<ul>
+<li><p><code>trajectory_start_time_</code></p>
+</li>
+<li><p><code>time_from_start</code></p>
+</li>
+<li><p>monotonic sampling<br>  的结构性冲突</p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>结论会非常明确：<br><strong>直接 position &#x3D; 把非实时、不确定性塞进实时线程</strong></p>
+</blockquote>
+<hr>
+<h2 id="M2-4｜Planning-Pipeline-与-controller-时间采样模型的“天然对齐”"><a href="#M2-4｜Planning-Pipeline-与-controller-时间采样模型的“天然对齐”" class="headerlink" title="M2-4｜Planning Pipeline 与 controller 时间采样模型的“天然对齐”"></a>M2-4｜Planning Pipeline 与 controller 时间采样模型的“天然对齐”</h2><p>这是你会觉得**“啊，原来如此”**的一节。</p>
+<p>核心对齐点：</p>
+<ul>
+<li><p>Planning Pipeline 输出：</p>
+<ul>
+<li>一条 <strong>完整时间轴</strong></li>
+</ul>
+</li>
+<li><p>controller 只做一件事：</p>
+<ul>
+<li>在时间轴上 <strong>前向采样</strong></li>
+</ul>
+</li>
+</ul>
+<p>我们会逐项对齐：</p>
+<ul>
+<li><p><code>time_from_start</code> ↔ <code>sample_time</code></p>
+</li>
+<li><p>trajectory segment ↔ monotonic iterator</p>
+</li>
+<li><p>插值方法 ↔ controller 的职责边界</p>
+</li>
+</ul>
+<blockquote>
+<p>你会看到：<br><strong>MoveIt 在接口层已经为 controller 的 update() 铺好路</strong></p>
+</blockquote>
+<hr>
+<h2 id="M2-5｜一句话工程结论（为进入-Block-M3-做准备）"><a href="#M2-5｜一句话工程结论（为进入-Block-M3-做准备）" class="headerlink" title="M2-5｜一句话工程结论（为进入 Block M3 做准备）"></a>M2-5｜一句话工程结论（为进入 Block M3 做准备）</h2><p>本节只做一件事：</p>
+<ul>
+<li><p>用 <strong>3～5 条工程级断言</strong>总结：</p>
+<ul>
+<li><p>为什么 Planning Pipeline <strong>必须止步于 trajectory</strong></p>
+</li>
+<li><p>为什么这是一个“最小责任、最大稳定性”的接口设计</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>这会直接引出后续可学内容，例如：</p>
+<ul>
+<li><p>trajectory 时间参数化插件</p>
+</li>
+<li><p>execution pipeline &#x2F; trajectory adapter</p>
+</li>
+<li><p>multi-controller &#x2F; multi-mode 执行扩展</p>
+</li>
+</ul>
+<hr>
+<h2 id="Block-M2-学习完成判定标准（给你一个自检锚点）"><a href="#Block-M2-学习完成判定标准（给你一个自检锚点）" class="headerlink" title="Block M2 学习完成判定标准（给你一个自检锚点）"></a>Block M2 学习完成判定标准（给你一个自检锚点）</h2><p>当你学完 Block M2，你应该可以<strong>不看代码</strong>回答：</p>
+<ul>
+<li><p>为什么 controller 不关心规划算法</p>
+</li>
+<li><p>为什么 Planning Pipeline 不关心实时性</p>
+</li>
+<li><p>为什么 JointTrajectory 是两者之间<strong>唯一合理的契约</strong></p>
+</li>
+<li><p>如果让你设计一个新的执行系统，你是否会做同样的选择？为什么？</p>
+</li>
+</ul>
+<hr>
+<hr>
+<h1 id="Block-M2｜Planning-Pipeline-的接口设计意义"><a href="#Block-M2｜Planning-Pipeline-的接口设计意义" class="headerlink" title="Block M2｜Planning Pipeline 的接口设计意义"></a>Block M2｜Planning Pipeline 的接口设计意义</h1><p>（执行系统接口视角 · 非算法视角）</p>
+<hr>
+<h2 id="一、问题定义"><a href="#一、问题定义" class="headerlink" title="一、问题定义"></a>一、问题定义</h2><p>在已经完全理解：</p>
+<ul>
+<li><p><code>joint_trajectory_controller::update()</code></p>
+</li>
+<li><p><code>Trajectory::sample()</code></p>
+</li>
+<li><p>时间推进模型</p>
+</li>
+<li><p>副作用隔离设计</p>
+</li>
+</ul>
+<p>之后，需要回答一个工程问题：</p>
+<blockquote>
+<p><strong>MoveIt Planning Pipeline 为什么止步于 trajectory？</strong><br>为什么不直接输出 position setpoint？</p>
+</blockquote>
+<hr>
+<h2 id="二、系统分层（执行导向）"><a href="#二、系统分层（执行导向）" class="headerlink" title="二、系统分层（执行导向）"></a>二、系统分层（执行导向）</h2><p>从 controller 视角反推系统结构：</p>
+<div class="code-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[ Planning Pipeline ]        ← 非实时层</span><br><span class="line">          ↓</span><br><span class="line">[ JointTrajectory ]          ← 时间结构对象</span><br><span class="line">          ↓</span><br><span class="line">[ Controller update() ]      ← 实时采样器</span><br><span class="line">          ↓</span><br><span class="line">[ Command Interface ]        ← 唯一副作用入口</span><br><span class="line">          ↓</span><br><span class="line">[ Hardware ]</span><br></pre></td></tr></table></figure></div>
+
+<p>关键边界：</p>
+<ul>
+<li><p>Planning Pipeline 不在实时线程</p>
+</li>
+<li><p>Controller 是唯一写 command interface 的模块</p>
+</li>
+<li><p>Trajectory 是非实时 → 实时之间的“接口对象”</p>
+</li>
+</ul>
+<hr>
+<h2 id="三、controller-的设计公理"><a href="#三、controller-的设计公理" class="headerlink" title="三、controller 的设计公理"></a>三、controller 的设计公理</h2><p>controller 的核心不是“控制”，而是：</p>
+<blockquote>
+<p><strong>时间驱动的轨迹播放器</strong></p>
+</blockquote>
+<p>其行为模型：</p>
+<ol>
+<li><p>固定周期 update()</p>
+</li>
+<li><p>计算当前时间：</p>
+ <div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t = now() - trajectory_start_time_</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>调用：</p>
+ <div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sample(t)</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>写 command interface</p>
+</li>
+</ol>
+<p>关键假设：</p>
+<ul>
+<li><p>时间单调前进</p>
+</li>
+<li><p>trajectory 先验存在</p>
+</li>
+<li><p>trajectory 不在执行过程中被改写</p>
+</li>
+<li><p>sample 是纯函数</p>
+</li>
+<li><p>副作用只发生在最后一步</p>
+</li>
+</ul>
+<hr>
+<h2 id="四、Planning-Pipeline-的工程职责"><a href="#四、Planning-Pipeline-的工程职责" class="headerlink" title="四、Planning Pipeline 的工程职责"></a>四、Planning Pipeline 的工程职责</h2><p>Planning Pipeline 的存在不是为了“算路径”，<br>而是为了解决 controller 永远不该解决的问题：</p>
+<hr>
+<h3 id="1️⃣-全局一致性（一次性确定）"><a href="#1️⃣-全局一致性（一次性确定）" class="headerlink" title="1️⃣ 全局一致性（一次性确定）"></a>1️⃣ 全局一致性（一次性确定）</h3><p>必须在进入实时系统前确定：</p>
+<ul>
+<li><p>起点与终点</p>
+</li>
+<li><p>连续性</p>
+</li>
+<li><p>时间轴完整性</p>
+</li>
+<li><p>单调性</p>
+</li>
+</ul>
+<p>controller 不具备全局视角，只负责“当前时刻”。</p>
+<hr>
+<h3 id="2️⃣-可失败性隔离"><a href="#2️⃣-可失败性隔离" class="headerlink" title="2️⃣ 可失败性隔离"></a>2️⃣ 可失败性隔离</h3><p>Planning Pipeline 可以：</p>
+<ul>
+<li><p>失败</p>
+</li>
+<li><p>重试</p>
+</li>
+<li><p>回滚</p>
+</li>
+<li><p>多次尝试</p>
+</li>
+</ul>
+<p>controller 不能：</p>
+<ul>
+<li><p>不能阻塞</p>
+</li>
+<li><p>不能“再算一次”</p>
+</li>
+<li><p>不能在 update() 中失败重来</p>
+</li>
+</ul>
+<p>因此：</p>
+<blockquote>
+<p>所有可失败计算必须在非实时层完成。</p>
+</blockquote>
+<hr>
+<h3 id="3️⃣-时间结构生成"><a href="#3️⃣-时间结构生成" class="headerlink" title="3️⃣ 时间结构生成"></a>3️⃣ 时间结构生成</h3><p>controller 的运行模型要求：</p>
+<blockquote>
+<p>trajectory 必须是一个时间函数</p>
+</blockquote>
+<p>形式化表达：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f(t) = joint_state_snapshot</span><br></pre></td></tr></table></figure></div>
+
+<p>这意味着 trajectory 必须具备：</p>
+<ul>
+<li><p>time_from_start</p>
+</li>
+<li><p>单调时间序列</p>
+</li>
+<li><p>插值语义</p>
+</li>
+</ul>
+<p>Planning Pipeline 的输出正是：</p>
+<ul>
+<li><p>RobotTrajectory</p>
+</li>
+<li><p>JointTrajectory</p>
+</li>
+</ul>
+<p>本质：离散时间节点 + 插值定义</p>
+<hr>
+<h3 id="4️⃣-副作用隔离（核心工程原则）"><a href="#4️⃣-副作用隔离（核心工程原则）" class="headerlink" title="4️⃣ 副作用隔离（核心工程原则）"></a>4️⃣ 副作用隔离（核心工程原则）</h3><p>在 ros2_control 中：</p>
+<blockquote>
+<p>写 command interface 是唯一副作用。</p>
+</blockquote>
+<p>因此：</p>
+<ul>
+<li><p>副作用必须集中在 controller</p>
+</li>
+<li><p>非实时模块不得间接支配实时输出</p>
+</li>
+</ul>
+<p>如果 Planning Pipeline 输出 position setpoint：</p>
+<ul>
+<li><p>实时线程必须承担时间推进</p>
+</li>
+<li><p>必须处理跳变</p>
+</li>
+<li><p>必须做平滑</p>
+</li>
+<li><p>必须做决策</p>
+</li>
+</ul>
+<p>这违反：</p>
+<blockquote>
+<p>实时线程只做“确定性、可界定”的工作</p>
+</blockquote>
+<hr>
+<h2 id="五、为什么不能输出-position-setpoint"><a href="#五、为什么不能输出-position-setpoint" class="headerlink" title="五、为什么不能输出 position setpoint"></a>五、为什么不能输出 position setpoint</h2><p>从 controller 时间模型直接否定：</p>
+<hr>
+<h2 id="❌-1-position-无时间身份"><a href="#❌-1-position-无时间身份" class="headerlink" title="❌ 1. position 无时间身份"></a>❌ 1. position 无时间身份</h2><p>controller 需要：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">trajectory(t)</span><br></pre></td></tr></table></figure></div>
+
+<p>position 只提供：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">state</span><br></pre></td></tr></table></figure></div>
+
+<p>无法回答：</p>
+<ul>
+<li>这是哪个时间点的状态？</li>
+</ul>
+<hr>
+<h2 id="❌-2-破坏单调采样假设"><a href="#❌-2-破坏单调采样假设" class="headerlink" title="❌ 2. 破坏单调采样假设"></a>❌ 2. 破坏单调采样假设</h2><p>controller 使用：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">search_monotonically = true</span><br></pre></td></tr></table></figure></div>
+
+<p>position 可能：</p>
+<ul>
+<li><p>跳变</p>
+</li>
+<li><p>回退</p>
+</li>
+<li><p>被临时修正</p>
+</li>
+</ul>
+<p>破坏前向采样模型。</p>
+<hr>
+<h2 id="❌-3-把时间推进责任塞入实时线程"><a href="#❌-3-把时间推进责任塞入实时线程" class="headerlink" title="❌ 3. 把时间推进责任塞入实时线程"></a>❌ 3. 把时间推进责任塞入实时线程</h2><p>如果没有 trajectory：</p>
+<p>controller 必须：</p>
+<ul>
+<li><p>决定当前目标</p>
+</li>
+<li><p>处理突变</p>
+</li>
+<li><p>计算过渡</p>
+</li>
+<li><p>管理时间连续性</p>
+</li>
+</ul>
+<p>这等价于：</p>
+<blockquote>
+<p>把 Planning 的责任强行放进 controller。</p>
+</blockquote>
+<hr>
+<h2 id="❌-4-副作用来源失控"><a href="#❌-4-副作用来源失控" class="headerlink" title="❌ 4. 副作用来源失控"></a>❌ 4. 副作用来源失控</h2><p>原设计：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">trajectory → controller → command interface</span><br></pre></td></tr></table></figure></div>
+
+<p>错误设计：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pipeline → position → controller → command interface</span><br></pre></td></tr></table></figure></div>
+
+<p>pipeline 间接影响实时输出，却不承担实时责任。</p>
+<p>这是严重的接口耦合问题。</p>
+<hr>
+<h2 id="六、Trajectory-为什么是完美接口对象"><a href="#六、Trajectory-为什么是完美接口对象" class="headerlink" title="六、Trajectory 为什么是完美接口对象"></a>六、Trajectory 为什么是完美接口对象</h2><p>trajectory 同时满足：</p>
+<ul>
+<li><p>无副作用</p>
+</li>
+<li><p>可整体校验</p>
+</li>
+<li><p>可整体替换</p>
+</li>
+<li><p>可缓存</p>
+</li>
+<li><p>可复制</p>
+</li>
+<li><p>可时间采样</p>
+</li>
+<li><p>可插值</p>
+</li>
+<li><p>可在非实时生成</p>
+</li>
+</ul>
+<p>它是：</p>
+<blockquote>
+<p>非实时与实时之间的“安全抽象层”</p>
+</blockquote>
+<hr>
+<h2 id="七、Planning-Pipeline-与-controller-的天然对齐"><a href="#七、Planning-Pipeline-与-controller-的天然对齐" class="headerlink" title="七、Planning Pipeline 与 controller 的天然对齐"></a>七、Planning Pipeline 与 controller 的天然对齐</h2><p>逐项对齐：</p>
+<table>
+<thead>
+<tr>
+<th>controller 需求</th>
+<th>trajectory 提供</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>时间锚点可平移</td>
+<td>time_from_start</td>
+</tr>
+<tr>
+<td>单调前向采样</td>
+<td>单调时间序列</td>
+</tr>
+<tr>
+<td>segment 插值</td>
+<td>waypoint + 速度语义</td>
+</tr>
+<tr>
+<td>无副作用输入</td>
+<td>纯数据对象</td>
+</tr>
+<tr>
+<td>可整体替换</td>
+<td>整条 trajectory</td>
+</tr>
+</tbody></table>
+<p>这不是巧合，而是接口级匹配。</p>
+<hr>
+<h2 id="八、五条工程断言（最终总结）"><a href="#八、五条工程断言（最终总结）" class="headerlink" title="八、五条工程断言（最终总结）"></a>八、五条工程断言（最终总结）</h2><h3 id="①-Planning-Pipeline-是“时间结构生成模块”，不是控制模块。"><a href="#①-Planning-Pipeline-是“时间结构生成模块”，不是控制模块。" class="headerlink" title="① Planning Pipeline 是“时间结构生成模块”，不是控制模块。"></a>① Planning Pipeline 是“时间结构生成模块”，不是控制模块。</h3><h3 id="②-trajectory-是执行意图的时间函数表示。"><a href="#②-trajectory-是执行意图的时间函数表示。" class="headerlink" title="② trajectory 是执行意图的时间函数表示。"></a>② trajectory 是执行意图的时间函数表示。</h3><h3 id="③-controller-是-trajectory-的播放器，而不是目标决策器。"><a href="#③-controller-是-trajectory-的播放器，而不是目标决策器。" class="headerlink" title="③ controller 是 trajectory 的播放器，而不是目标决策器。"></a>③ controller 是 trajectory 的播放器，而不是目标决策器。</h3><h3 id="④-position-setpoint-在时间采样模型下是未定义行为。"><a href="#④-position-setpoint-在时间采样模型下是未定义行为。" class="headerlink" title="④ position setpoint 在时间采样模型下是未定义行为。"></a>④ position setpoint 在时间采样模型下是未定义行为。</h3><h3 id="⑤-副作用必须锁在-controller，因此-Pipeline-必须止步于-trajectory。"><a href="#⑤-副作用必须锁在-controller，因此-Pipeline-必须止步于-trajectory。" class="headerlink" title="⑤ 副作用必须锁在 controller，因此 Pipeline 必须止步于 trajectory。"></a>⑤ 副作用必须锁在 controller，因此 Pipeline 必须止步于 trajectory。</h3><hr>
+<h2 id="九、一句话终极总结（可面试用）"><a href="#九、一句话终极总结（可面试用）" class="headerlink" title="九、一句话终极总结（可面试用）"></a>九、一句话终极总结（可面试用）</h2><blockquote>
+<p>MoveIt Planning Pipeline 的存在意义，不是为了“给控制器目标位置”，<br>而是为了在非实时层一次性生成一个完整、单调、可插值的时间函数，<br>使 controller 只需按时间采样并写入 command interface。</p>
+<p>trajectory 是实时系统中唯一合理的接口抽象。</p>
+</blockquote>
+<hr>
+<h2 id="Block-M2-状态"><a href="#Block-M2-状态" class="headerlink" title="Block M2 状态"></a>Block M2 状态</h2><p>✔ 范围内问题已全部闭环<br>✔ 与 controller update()&#x2F;sample 行为完全对齐<br>✔ 未展开算法、IK、PlanningScene、控制内部实现</p>
+<p>Block M2 完成。</p>
+<hr>
+<p>如果你愿意，我可以帮你：</p>
+<ul>
+<li><p>把 Block M1 + M2 合并成一份“执行系统总览图”</p>
+</li>
+<li><p>或直接进入 Block M3（执行层扩展）</p>
+</li>
+<li><p>或从接口设计层升维，讲“如何自己设计一个 MoveIt-like 执行架构”</p>
+</li>
+</ul>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> MoveIt Planning Pipeline</li>
+        <li><strong>Author:</strong> Mojiu</li>
+        <li><strong>Created at
+                :</strong> 2026-02-06 22:17:58</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2026-02-25 09:22:44
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://redefine.ohevan.com/2026/02/06/Blog/ros/moveit/MoveIt Planning Pipeline详解/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/moveit/">#moveit</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2026/02/18/Blog/ros/moveit/MoveIt%20%E5%9C%A8%E6%89%A7%E8%A1%8C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2%E4%B8%8E%E8%BE%B9%E7%95%8C/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">MoveIt 在执行系统中的角色与边界</span>
+						<span class="post-nav-item">Prev posts</span>
+					</span>
+				</a>
+			</div>
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2026/01/25/Blog/ros/sample()%20%E5%86%85%E9%83%A8%E7%B2%BE%E8%AF%BB/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">sample() 内部精读</span>
+						<span class="post-nav-item">Next posts</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">On this page</div>
+		<div class="page-title">MoveIt Planning Pipeline</div>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Block-M2%EF%BD%9CMoveIt-Planning-Pipeline%EF%BC%88%E6%89%A7%E8%A1%8C%E7%B3%BB%E7%BB%9F%E6%8E%A5%E5%8F%A3%E8%A7%86%E8%A7%92%EF%BC%89"><span class="nav-text">Block M2｜MoveIt Planning Pipeline（执行系统接口视角）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#M2-0%EF%BD%9C%E9%87%8D%E6%96%B0%E7%94%BB%E4%B8%80%E6%9D%A1%E2%80%9C%E6%89%A7%E8%A1%8C%E5%AF%BC%E5%90%91%E2%80%9D%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%BE%B9%E7%95%8C%E5%9B%BE%EF%BC%88%E5%AF%B9%E9%BD%90-Block-M1%EF%BC%89"><span class="nav-text">M2-0｜重新画一条“执行导向”的系统边界图（对齐 Block M1）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#M2-1%EF%BD%9CPlanning-Pipeline-%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%AE%9A%E4%BD%8D%EF%BC%9A%E5%AE%83%E8%A7%A3%E5%86%B3%E7%9A%84%E4%B8%8D%E6%98%AF%E2%80%9C%E6%8E%A7%E5%88%B6%E2%80%9D%EF%BC%8C%E8%80%8C%E6%98%AF%E2%80%9C%E6%89%A7%E8%A1%8C%E5%89%8D%E7%9A%84%E7%A1%AE%E5%AE%9A%E6%80%A7%E2%80%9D"><span class="nav-text">M2-1｜Planning Pipeline 的工程定位：它解决的不是“控制”，而是“执行前的确定性”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#M2-2%EF%BD%9C%E4%B8%BA%E4%BB%80%E4%B9%88-Planning-Pipeline-%E7%9A%84%E6%9C%80%E7%BB%88%E4%BA%A7%E7%89%A9%E6%98%AF-RobotTrajectory-JointTrajectory"><span class="nav-text">M2-2｜为什么 Planning Pipeline 的最终产物是 RobotTrajectory &#x2F; JointTrajectory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#M2-3%EF%BD%9C%E4%B8%BA%E4%BB%80%E4%B9%88-Planning-Pipeline-%E4%B8%8D%E7%9B%B4%E6%8E%A5%E8%BE%93%E5%87%BA-position-setpoint"><span class="nav-text">M2-3｜为什么 Planning Pipeline 不直接输出 position setpoint</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#M2-4%EF%BD%9CPlanning-Pipeline-%E4%B8%8E-controller-%E6%97%B6%E9%97%B4%E9%87%87%E6%A0%B7%E6%A8%A1%E5%9E%8B%E7%9A%84%E2%80%9C%E5%A4%A9%E7%84%B6%E5%AF%B9%E9%BD%90%E2%80%9D"><span class="nav-text">M2-4｜Planning Pipeline 与 controller 时间采样模型的“天然对齐”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#M2-5%EF%BD%9C%E4%B8%80%E5%8F%A5%E8%AF%9D%E5%B7%A5%E7%A8%8B%E7%BB%93%E8%AE%BA%EF%BC%88%E4%B8%BA%E8%BF%9B%E5%85%A5-Block-M3-%E5%81%9A%E5%87%86%E5%A4%87%EF%BC%89"><span class="nav-text">M2-5｜一句话工程结论（为进入 Block M3 做准备）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Block-M2-%E5%AD%A6%E4%B9%A0%E5%AE%8C%E6%88%90%E5%88%A4%E5%AE%9A%E6%A0%87%E5%87%86%EF%BC%88%E7%BB%99%E4%BD%A0%E4%B8%80%E4%B8%AA%E8%87%AA%E6%A3%80%E9%94%9A%E7%82%B9%EF%BC%89"><span class="nav-text">Block M2 学习完成判定标准（给你一个自检锚点）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Block-M2%EF%BD%9CPlanning-Pipeline-%E7%9A%84%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1%E6%84%8F%E4%B9%89"><span class="nav-text">Block M2｜Planning Pipeline 的接口设计意义</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E9%97%AE%E9%A2%98%E5%AE%9A%E4%B9%89"><span class="nav-text">一、问题定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E7%B3%BB%E7%BB%9F%E5%88%86%E5%B1%82%EF%BC%88%E6%89%A7%E8%A1%8C%E5%AF%BC%E5%90%91%EF%BC%89"><span class="nav-text">二、系统分层（执行导向）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81controller-%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%85%AC%E7%90%86"><span class="nav-text">三、controller 的设计公理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81Planning-Pipeline-%E7%9A%84%E5%B7%A5%E7%A8%8B%E8%81%8C%E8%B4%A3"><span class="nav-text">四、Planning Pipeline 的工程职责</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%EF%B8%8F%E2%83%A3-%E5%85%A8%E5%B1%80%E4%B8%80%E8%87%B4%E6%80%A7%EF%BC%88%E4%B8%80%E6%AC%A1%E6%80%A7%E7%A1%AE%E5%AE%9A%EF%BC%89"><span class="nav-text">1️⃣ 全局一致性（一次性确定）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%EF%B8%8F%E2%83%A3-%E5%8F%AF%E5%A4%B1%E8%B4%A5%E6%80%A7%E9%9A%94%E7%A6%BB"><span class="nav-text">2️⃣ 可失败性隔离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%EF%B8%8F%E2%83%A3-%E6%97%B6%E9%97%B4%E7%BB%93%E6%9E%84%E7%94%9F%E6%88%90"><span class="nav-text">3️⃣ 时间结构生成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%EF%B8%8F%E2%83%A3-%E5%89%AF%E4%BD%9C%E7%94%A8%E9%9A%94%E7%A6%BB%EF%BC%88%E6%A0%B8%E5%BF%83%E5%B7%A5%E7%A8%8B%E5%8E%9F%E5%88%99%EF%BC%89"><span class="nav-text">4️⃣ 副作用隔离（核心工程原则）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E8%BE%93%E5%87%BA-position-setpoint"><span class="nav-text">五、为什么不能输出 position setpoint</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9D%8C-1-position-%E6%97%A0%E6%97%B6%E9%97%B4%E8%BA%AB%E4%BB%BD"><span class="nav-text">❌ 1. position 无时间身份</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9D%8C-2-%E7%A0%B4%E5%9D%8F%E5%8D%95%E8%B0%83%E9%87%87%E6%A0%B7%E5%81%87%E8%AE%BE"><span class="nav-text">❌ 2. 破坏单调采样假设</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9D%8C-3-%E6%8A%8A%E6%97%B6%E9%97%B4%E6%8E%A8%E8%BF%9B%E8%B4%A3%E4%BB%BB%E5%A1%9E%E5%85%A5%E5%AE%9E%E6%97%B6%E7%BA%BF%E7%A8%8B"><span class="nav-text">❌ 3. 把时间推进责任塞入实时线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9D%8C-4-%E5%89%AF%E4%BD%9C%E7%94%A8%E6%9D%A5%E6%BA%90%E5%A4%B1%E6%8E%A7"><span class="nav-text">❌ 4. 副作用来源失控</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81Trajectory-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E5%AE%8C%E7%BE%8E%E6%8E%A5%E5%8F%A3%E5%AF%B9%E8%B1%A1"><span class="nav-text">六、Trajectory 为什么是完美接口对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81Planning-Pipeline-%E4%B8%8E-controller-%E7%9A%84%E5%A4%A9%E7%84%B6%E5%AF%B9%E9%BD%90"><span class="nav-text">七、Planning Pipeline 与 controller 的天然对齐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E4%BA%94%E6%9D%A1%E5%B7%A5%E7%A8%8B%E6%96%AD%E8%A8%80%EF%BC%88%E6%9C%80%E7%BB%88%E6%80%BB%E7%BB%93%EF%BC%89"><span class="nav-text">八、五条工程断言（最终总结）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%91%A0-Planning-Pipeline-%E6%98%AF%E2%80%9C%E6%97%B6%E9%97%B4%E7%BB%93%E6%9E%84%E7%94%9F%E6%88%90%E6%A8%A1%E5%9D%97%E2%80%9D%EF%BC%8C%E4%B8%8D%E6%98%AF%E6%8E%A7%E5%88%B6%E6%A8%A1%E5%9D%97%E3%80%82"><span class="nav-text">① Planning Pipeline 是“时间结构生成模块”，不是控制模块。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%91%A1-trajectory-%E6%98%AF%E6%89%A7%E8%A1%8C%E6%84%8F%E5%9B%BE%E7%9A%84%E6%97%B6%E9%97%B4%E5%87%BD%E6%95%B0%E8%A1%A8%E7%A4%BA%E3%80%82"><span class="nav-text">② trajectory 是执行意图的时间函数表示。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%91%A2-controller-%E6%98%AF-trajectory-%E7%9A%84%E6%92%AD%E6%94%BE%E5%99%A8%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E7%9B%AE%E6%A0%87%E5%86%B3%E7%AD%96%E5%99%A8%E3%80%82"><span class="nav-text">③ controller 是 trajectory 的播放器，而不是目标决策器。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%91%A3-position-setpoint-%E5%9C%A8%E6%97%B6%E9%97%B4%E9%87%87%E6%A0%B7%E6%A8%A1%E5%9E%8B%E4%B8%8B%E6%98%AF%E6%9C%AA%E5%AE%9A%E4%B9%89%E8%A1%8C%E4%B8%BA%E3%80%82"><span class="nav-text">④ position setpoint 在时间采样模型下是未定义行为。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%91%A4-%E5%89%AF%E4%BD%9C%E7%94%A8%E5%BF%85%E9%A1%BB%E9%94%81%E5%9C%A8-controller%EF%BC%8C%E5%9B%A0%E6%AD%A4-Pipeline-%E5%BF%85%E9%A1%BB%E6%AD%A2%E6%AD%A5%E4%BA%8E-trajectory%E3%80%82"><span class="nav-text">⑤ 副作用必须锁在 controller，因此 Pipeline 必须止步于 trajectory。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E4%B8%80%E5%8F%A5%E8%AF%9D%E7%BB%88%E6%9E%81%E6%80%BB%E7%BB%93%EF%BC%88%E5%8F%AF%E9%9D%A2%E8%AF%95%E7%94%A8%EF%BC%89"><span class="nav-text">九、一句话终极总结（可面试用）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Block-M2-%E7%8A%B6%E6%80%81"><span class="nav-text">Block M2 状态</span></a></li></ol></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2026&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Mojiu</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        19 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/build/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
+</body>
+
+</html>
